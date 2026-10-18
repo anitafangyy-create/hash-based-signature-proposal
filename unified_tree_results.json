@@ -1,0 +1,49 @@
+{
+  "tree_size_leaves": 8,
+  "tree_depth": 3,
+  "tree_root_hex": "4d63be2981b82866817a2b03f3835f1a79fcc75173a313a43499f57fcece0dd1",
+  "ots_witness_at_depth3": 4389,
+  "note_witness_at_depth3": 566,
+  "depth_table": [
+    {
+      "depth": 0,
+      "ots_witness_bytes": 4293,
+      "note_witness_bytes": 470
+    },
+    {
+      "depth": 1,
+      "ots_witness_bytes": 4325,
+      "note_witness_bytes": 502
+    },
+    {
+      "depth": 2,
+      "ots_witness_bytes": 4357,
+      "note_witness_bytes": 534
+    },
+    {
+      "depth": 3,
+      "ots_witness_bytes": 4389,
+      "note_witness_bytes": 566
+    },
+    {
+      "depth": 4,
+      "ots_witness_bytes": 4421,
+      "note_witness_bytes": 598
+    },
+    {
+      "depth": 5,
+      "ots_witness_bytes": 4453,
+      "note_witness_bytes": 630
+    },
+    {
+      "depth": 6,
+      "ots_witness_bytes": 4485,
+      "note_witness_bytes": 662
+    }
+  ],
+  "naive_rebuild_ms_cumulative": 0.09358301758766174,
+  "pk_eph_secp_bytes": 33,
+  "pk_eph_mlkem1024_bytes": 1568,
+  "pq_witness_delta_bytes": 1535,
+  "pq_witness_delta_pct": 271.2
+}
