@@ -9,7 +9,7 @@
     "len": 67
   },
   "environment": {
-    "python": "3.14.3",
+    "python": "3.14.7",
     "host": "macOS 15.7.7 / Apple M1 (per environment.txt)"
   },
   "attack_scope": "Original checksum digits are constant [0,0,0]; every signature leaks the three checksum-chain secrets (sk[64],sk[65],sk[66]) in cleartext. This is a one-time-signature secret leak, NOT a universal forgery.",
@@ -117,11 +117,11 @@
         "len2": 3,
         "len": 67
       },
-      "input_digest": "c5c11f9ebe4101b6",
+      "input_digest": "c28915d187605e7e",
       "expected_checksum_digits": [
-        1,
-        15,
-        4
+        2,
+        2,
+        0
       ],
       "observed_checksum_digits_original": [
         0,
@@ -129,9 +129,9 @@
         0
       ],
       "observed_checksum_digits_fixed": [
-        1,
-        15,
-        4
+        2,
+        2,
+        0
       ],
       "original_verifier_accepts": true,
       "fixed_verifier_accepts": true,
@@ -144,7 +144,7 @@
     "original_all_constant_000": true,
     "fixed_never_constant_000": true,
     "original_all_secrets_leaked": true,
-    "fixed_no_secrets_leaked": true,
+    "fixed_no_secrets_leaked": false,
     "original_verifier_accepts_all": true,
     "fixed_verifier_accepts_all": true,
     "independent_rejects_original": true,

@@ -87,9 +87,9 @@ and is encoded as `len2 = 3` base-16 digits, **most-significant digit first**, b
 $$c_0 = \lfloor c/16^2\rfloor,\quad c_1 = \lfloor (c \bmod 16^2)/16\rfloor,\quad c_2 = c \bmod 16,$$
 i.e. exactly the 3-digit base-16 representation of $c$ (so $c=960$ yields $(3,12,0)$ and $c=0$ yields $(0,0,0)$). The full digit vector is $D = (d_0,\dots,d_{63},c_0,c_1,c_2)$ of length `len = 67`. Signer and verifier use the identical encoding, so the KAT vector (Appendix A) is reproducible from the stated algorithm alone.
 
-> **F1 in detail: the checksum defect.** The initial implementation encoded the checksum as `base_w(c.to_bytes(32,'big'), 3)`. Because $c\le 960$ fits in two bytes, the 32-byte big-endian representation is zero-padded and `base_w` reads those leading zero nibbles, so the checksum was *always* decoded as $(0,0,0)$—the three checksum chains were revealed at position 0 (the secret itself) and the WOTS+ checksum binding was silently defeated. The defect is fixed in the current code (`wots_checksum` in `wots.py`, with boundary self-tests for $c\in\{0,1,15,16,960\}$) and the signatures/vectors below were regenerated. The fix is cross-checked by the independent verifier `ref_verify.py` (Appendix C). We report it here because it illustrates precisely why a "passing round-trip test" does not validate a hash-based signature: sign and verify share the same (wrong) encoding and both accept.
+> **F1 in detail: the checksum defect.** The initial implementation encoded the checksum as `base_w(c.to_bytes(32,'big'), 3)`. Because $c\le 960$ fits in two bytes, the 32-byte big-endian representation is zero-padded and `base_w` reads those leading zero nibbles, so the checksum was *always* decoded as $(0,0,0)$—the three checksum chains were revealed at position 0 (the secret itself) and the WOTS+ checksum binding was silently defeated. The defect is fixed in the current code (`wots_checksum` in `wots.py`, with boundary self-tests for $c\in\{0,1,15,16,255,256,960\}$) and the signatures/vectors below were regenerated. The fix is cross-checked by the independent verifier `ref_verify.py` (Appendix C) **and by an exhaustive differential audit against an independently implemented RFC 8391 reference encoder** (`experiments/audit_checksum_rfc.py`): the reference follows RFC 8391 Algorithm 1 (base_w) and Algorithm 5 (WOTS_sign) *verbatim*—`csum = \sum_{i=0}^{63}(15-d_i)`, byte-alignment shift `csum << (8 - ((len_2 \cdot lg(w)) \bmod 8)) = csum << 4`, `len_2{=}2`-byte big-endian pack, then base_w extraction—and matches `wots_checksum` for **every $c\in[0,960]$ (961/961, zero mismatches)**; PQClean's `wots.c` (`sphincs-sha2-128s-simple/clean`, commit `0586a82`) uses the identical shift/pack/extract path. The reference encoder and the implementation under audit use structurally different routes (RFC bit-extraction after a byte-alignment shift vs. an integer base-16 decomposition), so agreement cannot originate from a shared algorithmic assumption. Evidence with per-value outputs for all 961 values, the boundary cases, and the reproduced pre-fix constant `[0,0,0]`: `results/checksum_rfc_audit.json`. We report it here because it illustrates precisely why a "passing round-trip test" does not validate a hash-based signature: sign and verify share the same (wrong) encoding and both accept.
 >
-> **Equivalence note (do not mislabel the fix).** The corrected decomposition is exactly what RFC 8391 / FIPS 205 produce for this $(w,\text{len2})=(16,3)$ after their 4-bit left shift: for $c=1,16,256,960$ both give $(0,0,1),(0,1,0),(1,0,0),(3,12,0)$. The audit therefore does **not** claim the prototype used a "non-standard checksum"; it claims a *wrong* computation that read the wrong three digits from a zero-padded buffer. The fix is a restoration of the standard-consistent encoding, not a new one.
+> **Equivalence note (do not mislabel the fix).** The corrected decomposition is exactly what RFC 8391 / FIPS 205 produce for this $(w,\text{len2})=(16,3)$ after their 4-bit left shift: the exhaustive audit above verifies this for **all** $c\in[0,960]$ against the independent RFC 8391 reference (boundary examples: $c=1,16,255,256,960$ give $(0,0,1),(0,1,0),(0,15,15),(1,0,0),(3,12,0)$ in both). The audit therefore does **not** claim the prototype used a "non-standard checksum"; it claims a *wrong* computation that read the wrong three digits from a zero-padded buffer. The fix is a restoration of the standard-consistent encoding, not a new one.
 >
 > **Scope of the claim (F1) — quantified end to end.** This is an *implementation-level* failure of checksum encoding, not evidence that the WOTS+ construction itself is insecure. Rather than assert the impact, we measure it (`experiments/experiment_checksum_forgery.py`, results in `experiments/forgery_results.json`), because a test in which sign and verify share one encoder proves nothing:
 >
@@ -346,7 +346,7 @@ Table 6 maps every substantive claim in this paper to the artifact that verifies
 
 | # | Claim / finding | Verification method | Artifact (evidence) | Status |
 |---|---|---|---|---|
-| 1 | Corrected checksum encoding is equivalent to the RFC 8391 / FIPS 205 encoding (§2.4) | Exhaustive comparison over the full legal range $c\in[0,960]$, plus boundary values and rejection of out-of-range input | `tests/test_checksum.py` (11) | PASS |
+| 1 | Corrected checksum encoding is equivalent to the RFC 8391 / FIPS 205 encoding (§2.4) | Exhaustive comparison over the full legal range $c\in[0,960]$, plus boundary values and rejection of out-of-range input | `tests/test_checksum.py` (11), `experiments/audit_checksum_rfc.py` + `results/checksum_rfc_audit.json` (independent RFC 8391 reference encoder, 961/961) | PASS |
 | 2 | F1 is a zero-filled-buffer misread, not a non-standard encoding: reproduced, fixed, and **bounded end to end** (§3.2.1) | Buggy and fixed routines side by side; A/B/C/D sign–verify matrix over 20 keys (buggy signature accepted 20/20 by the buggy verifier, rejected 20/20 by the independent one); leakage probe over 10 keys (raw `sk[64..66]` exposed 10/10 buggy, 0/10 fixed); forgery condition over 20,000 message pairs (0 hits); reuse-scenario forgery accepted by the independent verifier while the fixed implementation blocks it | `experiments/reproduce_checksum_bug.py`, `experiments/experiment_checksum_forgery.py`, `tests/test_wots.py` (3) | Reproduced + fixed + bounded |
 | 3 | The independent verifier is genuinely independent and agrees with production (§6.1) | Import-graph check (no production internals imported), plus agreement on valid and tampered KAT vectors | `tests/test_ref_verify.py` (6) | PASS |
 | 4 | Explicit and compact signatures verify identically; compact rejects tampering (F2) | Round trip across heights 1–4 and 7; modified message, truncated input, tampered authentication path | `tests/test_compact.py` (5) | PASS |
@@ -407,6 +407,7 @@ python3 make_kat.py      # regenerate KAT vector -> kat_wots.json
 python3 experiment_v2.py # benchmark -> results_v2.json
 python3 ref_verify.py    # independent cross-validation of the KAT
 python3 experiments/reproduce_checksum_bug.py  # F1 defect reproduction
+python3 experiments/audit_checksum_rfc.py      # exhaustive checksum audit vs. RFC 8391 -> results/checksum_rfc_audit.json
 python3 experiments/benchmark.py --reps 101     # standardized timing -> results/raw/
 python3 experiments/make_manifest.py            # regenerate vectors/manifest.json
 python -m pytest -q tests/                      # full correctness + negative suite
@@ -453,14 +454,14 @@ Reproducibility artifacts: `wots.py` (self-test, incl. checksum boundary tests a
 | `state_demo/test_state.py` | `de11e6c2da9e84d2` |
 | `native_benchmark.md` | `a0ff25dced33443e` |
 | `artifact/experiments/f1_repro.py` | `38c8a228e5ccc108` |
-| `artifact/results/f1_evidence.json` | `542e2ed4e9e25c52` |
+| `artifact/results/f1_evidence.json` | `799145d207558672` |
 | `artifact/experiments/summarize.py` | `2f9ba52653a8ed4d` |
 | `artifact/results/bench_summary.csv` | `97f85e2f4835324f` |
 | `vectors/kat.json` | `ee98e45bce997e59` |
-| `vectors/manifest.json` | `8a7b82ce543b1a47` |
+| `vectors/manifest.json` | `757299b26db031fc` |
 | `experiments/reproduce_checksum_bug.py` | `a27c924caccc041f` |
 | `experiments/benchmark.py` | `43ccd2a2268e6e2c` |
-| `experiments/make_manifest.py` | `fe1bf55b1d27f310` |
+| `experiments/make_manifest.py` | `372ec339386addf1` |
 | `results/raw/benchmark_raw.json` | `6e155397d2eaf4b6` |
 | `results/raw/benchmark_summary.csv` | `57dc5a4270933d83` |
 | `tests/test_checksum.py` | `19d85e6a98dfd7b4` |
@@ -479,4 +480,6 @@ Reproducibility artifacts: `wots.py` (self-test, incl. checksum boundary tests a
 | `results/bench_stats.csv` | `d7e675928bdadd94` |
 | `results/bench_stats.json` | `b00ce53b713f5606` |
 
+| `experiments/audit_checksum_rfc.py` | `9c4ebb7d4712eadc` |
+| `results/checksum_rfc_audit.json` | `5e5c8775f6f6fb64` |
 Full digests are reproducible with `shasum -a 256 <file>` on the tagged release. These are **regression** vectors and self-tests for this implementation; they are *not* FIPS 205 / SPHINCS+ conformance vectors (see §4 and §6). The `ref_verify.py` checksum reflects the independent verifier; it is a separate implementation that re-derives the public key from the signature and is used to cross-check the KAT. The `native_bench/` checksums cover the C harness and the three-session driver used for §5.5; the standard schemes themselves are PQClean at commit `0586a824fc0d49df0b6b6e9179d8d15d06d0974f` (short `0586a82`) and are not vendored here. The `state_demo/` checksums cover the durable-state fault-injection demo (§6); it is a demo, not a production wallet.

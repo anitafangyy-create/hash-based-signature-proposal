@@ -58,6 +58,7 @@ def main():
         "paper.md", "kat_wots.json",
         "native_bench/bench_proto.c", "native_bench/bench_std.c",
         "native_bench/build.sh",
+        "experiments/audit_checksum_rfc.py", "results/checksum_rfc_audit.json",
     ]
     inputs = {f: _sha256(ROOT / f) for f in files}
 
