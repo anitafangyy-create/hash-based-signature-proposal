@@ -19,7 +19,7 @@ output artifact, and its SHA-256.
 `make reproduce` runs, in order: checksum RFC audit (961), leaf equivalence
 (128 leaves), mutation testing (3 mutants), F1 defect reproduction, pytest
 (123 tests), state fault injection (10/10), randomized scheduling stress
-(50x8), then regenerates `vectors/manifest.json`. Every step exits non-zero on
+(1000x8 = 8,000 reservations), then regenerates `vectors/manifest.json`. Every step exits non-zero on
 failure. The full transcript is captured below with exit codes.
 
 ```
@@ -37,7 +37,7 @@ $ echo $?  -> 0
 | 4 | `python3 experiments/reproduce_checksum_bug.py` | 0 | `artifact/f1_repro.py` evidence | see Appendix C |
 | 5 | `python3 -m pytest -q tests/` | 0 | 123 passed | — |
 | 6 | `python3 state_demo/test_state.py` | 0 | 10/10 passed | see Appendix C |
-| 7 | `python3 experiments/state_stress.py --rounds 50 --processes 8` | 0 | `results/state_stress.json` | see Appendix C |
+| 7 | `python3 experiments/state_stress.py --rounds 1000 --processes 8` | 0 | `results/state_stress.json` (8,000 reservations, 0 duplicates, restart-verified) | see Appendix C |
 | 8 | `python3 experiments/benchmark_state.py --reps 1000` | 0 | `results/state_overhead.json` | see Appendix C |
 | 9 | `python3 experiments/make_manifest.py` | 0 | `vectors/manifest.json` | see Appendix C |
 

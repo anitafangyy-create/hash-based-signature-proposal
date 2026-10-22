@@ -9,9 +9,14 @@
 #
 # Every target fails with a non-zero exit code on the first error.
 
-.PHONY: reproduce verify benchmark benchmark-native analyze manifest
+.PHONY: reproduce verify benchmark benchmark-native analyze manifest stress
 
 PY ?= python3
+# Default stress size matches the paper's reported evidence (1000 rounds x 8
+# processes = 8000 reservations, restart-verified). Use STRESS_ROUNDS=50 for a
+# fast gate; the paper/README/reproduce default stays at 1000.
+STRESS_ROUNDS ?= 1000
+STRESS_PROCS ?= 8
 
 reproduce: ## full correctness gate (no timing benchmarks)
 	$(PY) experiments/audit_checksum_rfc.py
@@ -20,11 +25,11 @@ reproduce: ## full correctness gate (no timing benchmarks)
 	$(PY) experiments/reproduce_checksum_bug.py
 	$(PY) -m pytest -q tests/
 	$(PY) state_demo/test_state.py
-	$(PY) experiments/state_stress.py --rounds 50 --processes 8
+	$(PY) experiments/state_stress.py --rounds $(STRESS_ROUNDS) --processes $(STRESS_PROCS)
 	$(PY) experiments/make_manifest.py
 
-stress: ## randomized scheduling stress (default 50x8; use ROUNDS=/PROCS= to scale)
-	$(PY) experiments/state_stress.py --rounds $(ROUNDS) --processes $(PROCS)
+stress: ## randomized scheduling stress (STRESS_ROUNDS / STRESS_PROCS)
+	$(PY) experiments/state_stress.py --rounds $(STRESS_ROUNDS) --processes $(STRESS_PROCS)
 
 verify: ## fast gate for CI / day-to-day changes
 	$(PY) -m pytest -q tests/

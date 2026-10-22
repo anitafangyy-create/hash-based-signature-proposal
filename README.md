@@ -68,7 +68,7 @@ python3 experiments/reproduce_checksum_bug.py  # F1 defect reproduction
 python3 experiments/audit_checksum_rfc.py      # exhaustive checksum audit vs. RFC 8391 -> results/checksum_rfc_audit.json
 python3 experiments/leaf_equivalence.py        # explicit/compact equivalence over all 128 leaves of h=7 -> results/leaf_equivalence.json
 python3 experiments/mutation_test_checksum.py  # 3 encoder mutants, differential + suite detection -> results/mutation_test_checksum.json
-python3 experiments/state_stress.py            # randomized scheduling stress (50x8, restart-verified) -> results/state_stress.json
+python3 experiments/state_stress.py            # randomized scheduling stress (1000x8 = 8000 reservations, restart-verified) -> results/state_stress.json
 python3 experiments/benchmark_state.py         # allocator reserve+persist overhead (separate from §5 latencies) -> results/state_overhead.json
 python3 experiments/benchmark.py --reps 101     # standardized timing -> results/raw/
 python3 experiments/make_manifest.py            # regenerate vectors/manifest.json
@@ -101,9 +101,10 @@ cd native_bench && ./build.sh   # clones PQClean @ 0586a82, builds, writes nativ
   point of the reserve-then-sign path: concurrency, crash-before-reserve,
   crash-after-reserve, crash-after-signing, log tampering, truncation,
   rollback detection, capacity enforcement, and cross-reopen persistence.
-  `experiments/state_stress.py` adds randomized scheduling stress: 50 rounds
+  `experiments/state_stress.py` adds randomized scheduling stress: 1,000 rounds
   × 8 concurrent child processes with random delays, restart-verified after
-  each round — **400 reservations, 0 duplicate indices, 0 reload mismatches**
+  each round — **8,000 reservations, 0 duplicate indices, 0 reload
+  mismatches, 1,000/1,000 restart rounds reject reuse**
   (`results/state_stress.json`).
 - **State overhead** — `experiments/benchmark_state.py` measures the
   allocator's reserve-and-persist path separately (~0.68 ms median, incl.
