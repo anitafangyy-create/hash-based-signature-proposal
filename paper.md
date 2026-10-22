@@ -204,7 +204,7 @@ Known-answer tests use a deterministic DRBG (SHA-256 in counter mode) seeded wit
 
 ### 5.1 Setup
 
-Benchmarks run on the host described in Appendix B (Apple M1, macOS 15.7.7, CPython 3.14.3). Each data point is the median of **31 repetitions**, reported with the interquartile range (IQR); we deliberately exceed the minimum sample size because sub-millisecond Python operations are sensitive to garbage collection, scheduler migration, and CPU frequency scaling. The timed interval for each operation includes the full cryptographic work: for signing, the message digest, the OTS chain evaluations, and assembly of the OTS signature and authentication path; for verification, parsing the complete signature, the OTS verification, recomputation of the leaf hash, and the authentication-path walk to the root; for key generation, generation of all $2^h$ OTS key pairs and construction of the Merkle tree in a single process. **The Python latency figures in §5.2–5.3 are not directly comparable to native implementations; §5.5 provides a controlled native C benchmark in which both the prototype and the standard schemes are compiled in C on the same host.**
+Benchmarks run on the host described in Appendix B (Apple M1, macOS 15.7.7, CPython 3.14.7). Each data point is the median of **31 repetitions**, reported with the interquartile range (IQR); we deliberately exceed the minimum sample size because sub-millisecond Python operations are sensitive to garbage collection, scheduler migration, and CPU frequency scaling. The timed interval for each operation includes the full cryptographic work: for signing, the message digest, the OTS chain evaluations, and assembly of the OTS signature and authentication path; for verification, parsing the complete signature, the OTS verification, recomputation of the leaf hash, and the authentication-path walk to the root; for key generation, generation of all $2^h$ OTS key pairs and construction of the Merkle tree in a single process. **The Python latency figures in §5.2–5.3 are not directly comparable to native implementations; §5.5 provides a controlled native C benchmark in which both the prototype and the standard schemes are compiled in C on the same host.**
 
 #### 5.1.1 Reproducibility and measurement protocol
 
@@ -421,7 +421,7 @@ All latency measurements were produced on the following host; results are Python
 | CPU | Apple M1 (8-core Apple Silicon, ARM64) |
 | OS | macOS 15.7.7 (Darwin 24.6.0) |
 | Memory | 8 GB unified |
-| Python | CPython 3.14.3 (standard library only; `hashlib.sha256`, `os.urandom`) |
+| Python | CPython 3.14.7 (standard library only; `hashlib.sha256`, `os.urandom`) |
 | Timing | `time.perf_counter()`; **median of 31 repetitions**, IQR reported; raw per-iteration samples embedded in `results_v2.json` |
 | Warm-up | 3-iteration (key generation, signing, verification) before timing, matching the native C harness (§5.5); GC disabled around the sub-millisecond sign/verify measurements and collected between phases |
 | Notes | No pinning of core, scheduler, or frequency scaling; GC is controlled only around the sign/verify timed loops; sub-millisecond timings carry residual noise and are read as order-of-magnitude. |
@@ -438,31 +438,31 @@ Reproducibility artifacts: `wots.py` (self-test, incl. checksum boundary tests a
 | `hbs_signature.py` | `c03c6c475ce71aca` |
 | `make_kat.py` | `33c72f8105977178` |
 | `kat_wots.json` | `ee98e45bce997e59` |
-| `experiment_v2.py` | `51eb2a0a4e9d71b1` |
-| `results_v2.json` | `96f56aacdfca3b9b` |
+| `experiment_v2.py` | `ad306bee197cd02b` |
+| `results_v2.json` | `c19f2d4ecd2dbee1` |
 | `ref_verify.py` | `cef238d7bd637828` |
-| `native_results.json` | `4b87b625168b629a` |
+| `native_results.json` | `c0d8aafd02eb6e94` |
 | `make_native_chart.py` | `45bfa2363cdc3d63` |
-| `native_bench/bench_proto.c` | `37abb8bc33d32748` |
+| `native_bench/bench_proto.c` | `fa1a74db8ef59e63` |
 | `native_bench/bench_std.c` | `cac7873393bde50a` |
 | `native_bench/build.sh` | `f93ac32283a1888f` |
-| `native_results_sessions.json` | `78941c91f5828e43` |
+| `native_results_sessions.json` | `228792ba2f46eb82` |
 | `native_bench/run_sessions.py` | `8e4550abbe92e480` |
 | `native_bench/summarize_sessions.py` | `8f9c6c7926033823` |
 | `state_demo/durable_state.py` | `7642c01423483df7` |
 | `state_demo/test_state.py` | `de11e6c2da9e84d2` |
-| `native_benchmark.md` | `00956be787c872a8` |
+| `native_benchmark.md` | `a0ff25dced33443e` |
 | `artifact/experiments/f1_repro.py` | `38c8a228e5ccc108` |
 | `artifact/results/f1_evidence.json` | `542e2ed4e9e25c52` |
 | `artifact/experiments/summarize.py` | `2f9ba52653a8ed4d` |
-| `artifact/results/bench_summary.csv` | `b05dbab366609bea` |
+| `artifact/results/bench_summary.csv` | `97f85e2f4835324f` |
 | `vectors/kat.json` | `ee98e45bce997e59` |
-| `vectors/manifest.json` | `5c5d4b599cfd2ca8` |
+| `vectors/manifest.json` | `8a7b82ce543b1a47` |
 | `experiments/reproduce_checksum_bug.py` | `a27c924caccc041f` |
-| `experiments/benchmark.py` | `ca3e7c7a3ace2539` |
+| `experiments/benchmark.py` | `43ccd2a2268e6e2c` |
 | `experiments/make_manifest.py` | `fe1bf55b1d27f310` |
-| `results/raw/benchmark_raw.json` | `f38ca029fd83f760` |
-| `results/raw/benchmark_summary.csv` | `e56687824338ebbd` |
+| `results/raw/benchmark_raw.json` | `6e155397d2eaf4b6` |
+| `results/raw/benchmark_summary.csv` | `57dc5a4270933d83` |
 | `tests/test_checksum.py` | `19d85e6a98dfd7b4` |
 | `tests/test_wots.py` | `633ebc2438fecedb` |
 | `tests/test_compact.py` | `a4d2845667cef98b` |
@@ -476,7 +476,7 @@ Reproducibility artifacts: `wots.py` (self-test, incl. checksum boundary tests a
 | `experiments/analyze_results.py` | `bacd3c52069495a0` |
 | `experiments/signature_size.py` | `a3a4b9b9f4e88495` |
 | `experiments/size_accounting.json` | `d81e160d63057bc4` |
-| `results/bench_stats.csv` | `b18c86025f430a3b` |
-| `results/bench_stats.json` | `09bd7d789c39951e` |
+| `results/bench_stats.csv` | `d7e675928bdadd94` |
+| `results/bench_stats.json` | `b00ce53b713f5606` |
 
 Full digests are reproducible with `shasum -a 256 <file>` on the tagged release. These are **regression** vectors and self-tests for this implementation; they are *not* FIPS 205 / SPHINCS+ conformance vectors (see §4 and §6). The `ref_verify.py` checksum reflects the independent verifier; it is a separate implementation that re-derives the public key from the signature and is used to cross-check the KAT. The `native_bench/` checksums cover the C harness and the three-session driver used for §5.5; the standard schemes themselves are PQClean at commit `0586a824fc0d49df0b6b6e9179d8d15d06d0974f` (short `0586a82`) and are not vendored here. The `state_demo/` checksums cover the durable-state fault-injection demo (§6); it is a demo, not a production wallet.

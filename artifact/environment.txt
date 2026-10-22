@@ -1,0 +1,30 @@
+Generated: 2026-10-22T08:05:00Z
+Host OS: macOS 15.7.7
+Kernel: Darwin 192.168.1.122 24.6.0 Darwin Kernel Version 24.6.0: Tue Apr 21 20:18:14 PDT 2026; root:xnu-11417.140.69.710.16~1/RELEASE_ARM64_T8103 arm64
+Arch: arm64
+Python (actual): Python 3.14.7 (cpython; the interpreter used for experiment_v2.py, benchmark.py, run_sessions.py, make_manifest.py)
+Python (paper claims): CPython 3.14.7 (matches actual)
+C compiler: Apple clang version 17.0.0 (clang-1700.0.13.5)
+Git HEAD: c1e776886888da9396e56b2bf331dcb4e606c2af (rounds 5-6 external-review fixes; supersedes e896002)
+Git state: unified MSS-LEAF domain-separation label in experiment_v2.py + native_bench/bench_proto.c; uniform 3-iteration warm-up in experiments/benchmark.py; corrected fig6 XMSS/LMS sizes in make_charts_v2.py; §3.3.2 deployment-API scope disclosure; [17] Merkle CRYPTO'87 DOI. See before-fix.patch for the F1 crypto fixes, and pre_submission_review_2026-10-22.md for the full review record.
+PQClean commit: 0586a824fc0d49df0b6b6e9179d8d15d06d0974f (short 0586a82), 2026-08-04
+PQClean resolved: yes, short hash parsed locally; native_bench/_build/PQClean HEAD matches
+Crypto deps: Python stdlib only (hashlib.sha256, os.urandom)
+
+--- Round-4 additions (run from the repository root, not from artifact/) ---
+experiments/experiment_checksum_forgery.py  # F1 end-to-end A/B/C/D matrix, leakage probe, forgery-condition
+experiments/forgery_results.json            # its recorded output
+tests/test_checksum_forgery.py              # 7 end-to-end F1 regressions (part of the 118-test suite)
+experiments/analyze_results.py              # median / IQR / P95 / bootstrap 95% CI from raw samples
+results/bench_stats.{csv,json}              # its output (63 rows)
+experiments/signature_size.py               # F2 size accounting cross-checked against code constants
+experiments/size_accounting.json            # its output
+
+--- Round-5/6 additions (external review fix pass) ---
+pre_submission_review_2026-10-22.md         # external-review report (7 P1 + 5 P2; fixes tracked)
+tests/                                      # 118-test regression suite (7 files)
+state_demo/                                 # durable-state fault-injection demo (8/8 tests)
+native_results_sessions.json                # 3-session native benchmark (rotated order, 12s cooldown)
+native_results_sessions_old_defective.json  # archived defective (concurrent) session file, retained as evidence
+vectors/kat.json + make_kat.py              # deterministic KAT vectors
+experiments/make_manifest.py                # provenance manifest generator

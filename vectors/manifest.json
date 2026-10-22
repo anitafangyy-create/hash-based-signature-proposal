@@ -1,0 +1,44 @@
+{
+  "generated_utc": "2026-10-22T07:54:45.846944+00:00",
+  "source_revision": "c1e776886888da9396e56b2bf331dcb4e606c2af",
+  "interpreter": {
+    "python": "3.14.7",
+    "implementation": "cpython"
+  },
+  "compiler": {
+    "name": "Apple clang version 17.0.0 (clang-1700.0.13.5)",
+    "flags": "-O3 -std=c99"
+  },
+  "external": {
+    "pqclean_commit": "0586a82",
+    "pqclean_variant": "clean (portable C, not AVX2)"
+  },
+  "kat": {
+    "drbg": "SHA-256 counter mode",
+    "seed": "HBS-PQ-WOTS-KAT-v1-2026",
+    "message_hex": "506f73742d7175616e74756d207369676e6174757265204b415420766563746f72202330",
+    "file": "kat_wots.json",
+    "sha256": "ee98e45bce997e5961e8eb59902a0fb18e9616ce6f30c60cb9e3d5f79afe9a07"
+  },
+  "pytest_seed_note": "pytest is run with default RNG; checksum/signature tests use fixed seeds (Random(1234) in test_checksum.py, Random(20261021) in test_signature_properties.py) so results are deterministic.",
+  "input_digests_sha256": {
+    "wots.py": "f3528371dc924eccc50881cfdd429df430284e4ca4c3521e9a35fa26b85754bc",
+    "hbs_signature.py": "c03c6c475ce71acaed376a4f8f3665e00a78da13d0af153848f14980c3641116",
+    "experiment_v2.py": "ad306bee197cd02be8b8697fe78941caa5bf9f7601d24debfce88614feb55bd0",
+    "ref_verify.py": "cef238d7bd6378283509e47635f108ddf7f0d840572103f84b87c10f73425075",
+    "paper.md": "b896cf1e6fadb18514eed2f8669ecf1902068010b289ed5f90eccdd6140d275a",
+    "kat_wots.json": "ee98e45bce997e5961e8eb59902a0fb18e9616ce6f30c60cb9e3d5f79afe9a07",
+    "native_bench/bench_proto.c": "fa1a74db8ef59e63325cbcad5f00378c89069497857e5cffcae3415e57eff5eb",
+    "native_bench/bench_std.c": "cac7873393bde50a8caf179cc1520f8233d1e528fbb51dea4819d5a42b32cb10",
+    "native_bench/build.sh": "f93ac32283a1888f5c233e82bfa00a7b0152ed91d50316fc7cef57869caf7b80"
+  },
+  "result_artifacts": {
+    "python_benchmark": "results_v2.json",
+    "native_benchmark": "native_results_sessions.json",
+    "native_raw_sessions": "native_bench/run_sessions.py",
+    "checksum_repro": "experiments/reproduce_checksum_bug.py",
+    "f1_evidence": "artifact/results/f1_evidence.json",
+    "benchmark_raw": "results/raw/benchmark_raw.json"
+  },
+  "note": "This manifest ties every reported number to a specific code revision and input. Python and native C measurements are kept in separate files and never mixed (see paper \u00a75.1 and \u00a75.5)."
+}

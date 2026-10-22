@@ -113,3 +113,26 @@
 - **DOI/公开归档**需用户账号操作（GitHub/Zenodo），非本地可完成。
 - 表 4 各 scheme 的 `reps` 具体值未逐一核对（`native_benchmark.md` 声明 31；`native_results_sessions.json` environment 字段存在，未逐项展开）。
 - 未对 PQClean 未 vendored 的标准实现做字节级复验（论文已如实声明不 vendored，仅锁 commit）。
+
+---
+
+## Fix status — verified 2026-10-22 (rounds 5–6)
+
+All 7 P1 and 5 P2 findings plus the report-adjacent §3.3.2 deployment-API issue are fixed and re-verified on a quiet host:
+
+| Finding | Fix | Verification |
+|---|---|---|
+| P1-1 fig6 XMSS/LMS values | `make_charts_v2.py` 2504→2500, 1624→1452; fig6 regenerated | fig6 OCR: XMSS 2,500 B / LMS 1,452 B |
+| P1-2 raw JSON double-pass | full re-run of `experiment_v2.py`/`benchmark.py` on clean host | raw medians match Table 3 ballpark (verify 0.187/0.186 ms, n=101) |
+| P1-3 manifest stale | `make_manifest.py` regenerated at `c1e7768`; Appendix C re-frozen | manifest `8a7b82ce543b1a47` matches committed file |
+| P1-4 obs4 timings | ~62/~91 → ~50/~83 ms (new h=7 keygen 49.80/82.86) | Table 3 row h=7 |
+| P1-5 §5.1.1 example | median 0.166 ms, P95 0.194 ms, CI [0.1657, 0.1660] ms | `results/bench_stats.json` h=7 explicit verify |
+| P1-6 leaf label | experiment_v2.py + bench_proto.c unified to `MSS-LEAF` | 118-test suite re-run green; C sessions re-run |
+| P1-7 uncommitted work | full commit `c1e7768` (+ final docs commit) + tag | `git log` |
+| P2-1 tree heights | §6.1 "1–4 and 7" | matches `test_signature_properties.py` HEIGHTS |
+| P2-2 warm-up | `benchmark.py` 5→3, all harnesses uniform | §5.5 method text + code |
+| P2-3/P2-4 loose numbers | F3 gap 1.6–1.9× → 1.3–1.5×; ML-DSA-44 ~0.18/0.06 ms; SLH 25.02/1.49, 526.27/0.51 ms | recomputed from Table 3/4 medians |
+| P2-5 [17] DOI | `10.1007/3-540-48184-2_32` added | NIST DADS source |
+| §3.3.2 deployment API | disclosure: `hbs_signature.MerkleSignatureScheme` is Lamport-only | §3.3.2 text |
+
+Final clean-host numbers: Table 3 (Python) and Table 4 (native C, 3 sessions) in `results_v2.json` / `native_results_sessions.json`; figures fig5–fig8 regenerated from the same data. 118 pytest + state_demo 8/8 green; Appendix C 44/44 matches the tagged release.
