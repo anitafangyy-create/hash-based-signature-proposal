@@ -1,15 +1,17 @@
 """
 test_state.py — fault-injection tests for the durable one-time-key allocator.
 
-Tests (8 fault-injection scenarios, each logged as structured JSON):
+Tests (10 fault-injection scenarios, each logged as structured JSON):
   1. reuse denied (durable allocator and the deployment MSS API)
-  2. crash after reserve burns the leaf; it is never reused
-  3. partial rollback (restoring an older state dir) is detected
-  4. concurrent reservations are distinct (exclusive file lock)
-  5. a tampered log entry is detected (hash chain)
-  6. capacity is enforced
+  2. crash after reserve burns the leaf; it is never reused        [S3]
+  3. partial rollback (restoring an older state dir) is detected  [S7]
+  4. concurrent reservations are distinct (exclusive file lock)   [S1]
+  5. a tampered log entry is detected (hash chain)                [S6]
+  6. capacity is enforced                                         [S8]
   7. durable state persists across re-open (on-disk high-water mark)
-  8. log truncation detected (head pointing past the log)
+  8. log truncation detected (head pointing past the log)         [S7]
+  9. crash before reserve: state untouched, allocator continues   [S2]
+ 10. crash after signing: burned leaf never reused                [S4/S5]
 
 Usage: python3 state_demo/test_state.py
 Exit code 0 iff all tests pass. Structured per-scenario and summary logs are
@@ -56,16 +58,45 @@ def _child_crash(d: str, h: str) -> None:
     os._exit(1)  # simulate a crash after reservation, before signing
 
 
+def _child_crash_before_reserve(d: str, h: str) -> None:
+    # S2: crash before any reservation — no state change must occur.
+    s = DurableState(d, CAP, h)
+    s.__enter__()
+    print("ready", flush=True)
+    os._exit(1)
+
+
+def _child_sign_crash(d: str, h: str) -> None:
+    # S4/S5: reserve, complete signing, then crash before returning the
+    # signature. The burned leaf must never be reallocated on restart.
+    sys.path.insert(0, str(ROOT))
+    from hbs_signature import MerkleSignatureScheme
+    s = DurableState(d, CAP, h)
+    s.__enter__()
+    leaf = s.reserve()
+    MerkleSignatureScheme(height=4).sign(b"m", leaf)  # signing completes
+    print(leaf, flush=True)
+    os._exit(1)  # crash after signing, before the result is returned
+
+
 def _main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--child-reserve", nargs=2)
     ap.add_argument("--child-crash", nargs=2)
+    ap.add_argument("--child-crash-before", nargs=2)
+    ap.add_argument("--child-sign-crash", nargs=2)
     a = ap.parse_args()
     if a.child_reserve:
         _child_reserve(*a.child_reserve)
         return 0
     if a.child_crash:
         _child_crash(*a.child_crash)
+        return 0
+    if a.child_crash_before:
+        _child_crash_before_reserve(*a.child_crash_before)
+        return 0
+    if a.child_sign_crash:
+        _child_sign_crash(*a.child_sign_crash)
         return 0
 
     root = Path(tempfile.mkdtemp(prefix="hbs_state_demo_"))
@@ -232,6 +263,41 @@ def _main() -> int:
         else:
             raise AssertionError("log truncation not detected")
     check("log truncation detected (head beyond log)", t_truncate)
+
+    # 9. crash before reserve: no state change ---------------------------
+    def t_crash_before():
+        d, h = root / "cb", root / "cb.hwm"
+        p = subprocess.run(
+            [sys.executable, __file__, "--child-crash-before", str(d), str(h)],
+            capture_output=True, text=True)
+        if p.returncode == 0:
+            raise AssertionError("child was expected to crash")
+        if "ready" not in p.stdout:
+            raise AssertionError("child did not reach the ready point")
+        with DurableState(d, CAP, h) as s:
+            if s.used_leaves() != set():
+                raise AssertionError("crash before reserve left state behind")
+            first = s.reserve()
+            if first != 0:
+                raise AssertionError("allocator did not start from leaf 0")
+    check("crash before reserve leaves state untouched (S2)", t_crash_before)
+
+    # 10. crash after signing: burned leaf never reused -------------------
+    def t_sign_crash():
+        d, h = root / "sc", root / "sc.hwm"
+        p = subprocess.run(
+            [sys.executable, __file__, "--child-sign-crash", str(d), str(h)],
+            capture_output=True, text=True)
+        if p.returncode == 0:
+            raise AssertionError("child was expected to crash")
+        burned = int(p.stdout.strip().splitlines()[-1])
+        with DurableState(d, CAP, h) as s:
+            if burned not in s.used_leaves():
+                raise AssertionError("burned leaf not recorded after signing")
+            nxt = s.reserve()
+            if nxt == burned:
+                raise AssertionError("post-signing crash reallocated the used leaf")
+    check("crash after signing never reallocates the used leaf (S4/S5)", t_sign_crash)
 
     ok = sum(1 for _, o, _ in results if o)
     summary = {

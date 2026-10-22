@@ -1,0 +1,867 @@
+{
+  "rounds": [
+    {
+      "delays_ms": [
+        11,
+        18,
+        9,
+        5,
+        1,
+        7,
+        7,
+        7
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 0
+    },
+    {
+      "delays_ms": [
+        0,
+        17,
+        4,
+        1,
+        6,
+        6,
+        9,
+        20
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 1
+    },
+    {
+      "delays_ms": [
+        19,
+        3,
+        6,
+        4,
+        16,
+        3,
+        6,
+        18
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 2
+    },
+    {
+      "delays_ms": [
+        14,
+        0,
+        18,
+        3,
+        11,
+        4,
+        18,
+        11
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 3
+    },
+    {
+      "delays_ms": [
+        15,
+        1,
+        1,
+        4,
+        4,
+        14,
+        2,
+        3
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 4
+    },
+    {
+      "delays_ms": [
+        18,
+        7,
+        16,
+        16,
+        10,
+        3,
+        5,
+        13
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 5
+    },
+    {
+      "delays_ms": [
+        19,
+        13,
+        2,
+        13,
+        14,
+        1,
+        4,
+        12
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 6
+    },
+    {
+      "delays_ms": [
+        16,
+        6,
+        1,
+        2,
+        11,
+        3,
+        9,
+        16
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 7
+    },
+    {
+      "delays_ms": [
+        6,
+        0,
+        3,
+        2,
+        12,
+        7,
+        18,
+        15
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 8
+    },
+    {
+      "delays_ms": [
+        15,
+        20,
+        2,
+        17,
+        1,
+        11,
+        1,
+        18
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 9
+    },
+    {
+      "delays_ms": [
+        12,
+        0,
+        15,
+        1,
+        7,
+        0,
+        5,
+        9
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 10
+    },
+    {
+      "delays_ms": [
+        16,
+        16,
+        16,
+        11,
+        1,
+        9,
+        14,
+        0
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 11
+    },
+    {
+      "delays_ms": [
+        3,
+        0,
+        9,
+        18,
+        18,
+        1,
+        1,
+        16
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 12
+    },
+    {
+      "delays_ms": [
+        0,
+        12,
+        16,
+        8,
+        13,
+        0,
+        14,
+        10
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 13
+    },
+    {
+      "delays_ms": [
+        6,
+        10,
+        20,
+        19,
+        17,
+        16,
+        16,
+        15
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 14
+    },
+    {
+      "delays_ms": [
+        8,
+        8,
+        10,
+        16,
+        12,
+        17,
+        18,
+        11
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 15
+    },
+    {
+      "delays_ms": [
+        11,
+        5,
+        4,
+        16,
+        4,
+        14,
+        16,
+        9
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 16
+    },
+    {
+      "delays_ms": [
+        14,
+        4,
+        20,
+        0,
+        1,
+        20,
+        14,
+        18
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 17
+    },
+    {
+      "delays_ms": [
+        8,
+        17,
+        16,
+        7,
+        3,
+        15,
+        13,
+        17
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 18
+    },
+    {
+      "delays_ms": [
+        4,
+        4,
+        15,
+        7,
+        18,
+        0,
+        19,
+        13
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 19
+    },
+    {
+      "delays_ms": [
+        16,
+        18,
+        11,
+        2,
+        5,
+        12,
+        10,
+        1
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 20
+    },
+    {
+      "delays_ms": [
+        10,
+        3,
+        19,
+        6,
+        0,
+        8,
+        11,
+        12
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 21
+    },
+    {
+      "delays_ms": [
+        19,
+        17,
+        14,
+        2,
+        19,
+        19,
+        0,
+        4
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 22
+    },
+    {
+      "delays_ms": [
+        7,
+        15,
+        6,
+        12,
+        2,
+        3,
+        6,
+        15
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 23
+    },
+    {
+      "delays_ms": [
+        7,
+        4,
+        12,
+        13,
+        11,
+        5,
+        12,
+        10
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 24
+    },
+    {
+      "delays_ms": [
+        19,
+        9,
+        1,
+        1,
+        3,
+        20,
+        20,
+        14
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 25
+    },
+    {
+      "delays_ms": [
+        16,
+        7,
+        15,
+        4,
+        1,
+        9,
+        5,
+        15
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 26
+    },
+    {
+      "delays_ms": [
+        15,
+        13,
+        11,
+        12,
+        10,
+        1,
+        19,
+        7
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 27
+    },
+    {
+      "delays_ms": [
+        17,
+        4,
+        17,
+        7,
+        12,
+        16,
+        17,
+        14
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 28
+    },
+    {
+      "delays_ms": [
+        2,
+        12,
+        16,
+        18,
+        16,
+        2,
+        5,
+        2
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 29
+    },
+    {
+      "delays_ms": [
+        2,
+        18,
+        14,
+        1,
+        7,
+        17,
+        17,
+        9
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 30
+    },
+    {
+      "delays_ms": [
+        5,
+        18,
+        10,
+        8,
+        5,
+        16,
+        8,
+        20
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 31
+    },
+    {
+      "delays_ms": [
+        18,
+        11,
+        1,
+        1,
+        17,
+        17,
+        8,
+        7
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 32
+    },
+    {
+      "delays_ms": [
+        9,
+        4,
+        9,
+        11,
+        11,
+        2,
+        4,
+        19
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 33
+    },
+    {
+      "delays_ms": [
+        4,
+        13,
+        18,
+        5,
+        9,
+        14,
+        10,
+        12
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 34
+    },
+    {
+      "delays_ms": [
+        6,
+        16,
+        6,
+        1,
+        6,
+        3,
+        18,
+        11
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 35
+    },
+    {
+      "delays_ms": [
+        12,
+        11,
+        15,
+        11,
+        4,
+        10,
+        19,
+        6
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 36
+    },
+    {
+      "delays_ms": [
+        8,
+        15,
+        2,
+        18,
+        19,
+        11,
+        3,
+        19
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 37
+    },
+    {
+      "delays_ms": [
+        20,
+        15,
+        15,
+        0,
+        9,
+        9,
+        3,
+        10
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 38
+    },
+    {
+      "delays_ms": [
+        17,
+        8,
+        0,
+        13,
+        12,
+        8,
+        1,
+        9
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 39
+    },
+    {
+      "delays_ms": [
+        3,
+        4,
+        16,
+        17,
+        19,
+        4,
+        4,
+        3
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 40
+    },
+    {
+      "delays_ms": [
+        1,
+        11,
+        8,
+        3,
+        8,
+        9,
+        18,
+        17
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 41
+    },
+    {
+      "delays_ms": [
+        18,
+        5,
+        17,
+        6,
+        12,
+        0,
+        11,
+        3
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 42
+    },
+    {
+      "delays_ms": [
+        11,
+        1,
+        17,
+        14,
+        9,
+        5,
+        10,
+        11
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 43
+    },
+    {
+      "delays_ms": [
+        11,
+        17,
+        1,
+        10,
+        11,
+        15,
+        1,
+        3
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 44
+    },
+    {
+      "delays_ms": [
+        11,
+        4,
+        8,
+        11,
+        11,
+        7,
+        10,
+        2
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 45
+    },
+    {
+      "delays_ms": [
+        1,
+        7,
+        19,
+        8,
+        6,
+        2,
+        9,
+        16
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 46
+    },
+    {
+      "delays_ms": [
+        1,
+        7,
+        12,
+        2,
+        1,
+        10,
+        5,
+        3
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 47
+    },
+    {
+      "delays_ms": [
+        0,
+        7,
+        14,
+        13,
+        0,
+        16,
+        1,
+        20
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 48
+    },
+    {
+      "delays_ms": [
+        20,
+        1,
+        10,
+        10,
+        13,
+        11,
+        20,
+        5
+      ],
+      "duplicates": 0,
+      "ok": true,
+      "reloaded_matches": true,
+      "reuse_rejected_after_restart": true,
+      "round": 49
+    }
+  ],
+  "summary": {
+    "all_passed": true,
+    "duplicate_leaves_total": 0,
+    "elapsed_s": 12.01,
+    "failed_rounds": 0,
+    "generated": "deterministic",
+    "processes_per_round": 8,
+    "reload_mismatches": 0,
+    "reuse_rejections_after_restart_total": 50,
+    "rounds": 50,
+    "seed": 20261022,
+    "total_reservations": 400
+  }
+}
