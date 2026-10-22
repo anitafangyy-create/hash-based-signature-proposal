@@ -55,7 +55,9 @@ the review record).
 All timings in the paper come from the recorded snapshots in
 `results_v2.json` and `native_results_sessions.json`; the commands below
 regenerate them. Everything runs on Python stdlib only; figures need
-matplotlib/numpy; the native benchmark needs a C compiler.
+matplotlib/numpy; the native benchmark needs a C compiler. For a one-command
+evidence gate use `make reproduce` (tests + checksum audit + leaf equivalence
++ mutation tests + forgery reproduction + state demo + manifest).
 
 ```bash
 python3 wots.py          # self-test (incl. checksum boundary tests)
@@ -64,9 +66,11 @@ python3 experiment_v2.py # benchmark -> results_v2.json
 python3 ref_verify.py    # independent cross-validation of the KAT
 python3 experiments/reproduce_checksum_bug.py  # F1 defect reproduction
 python3 experiments/audit_checksum_rfc.py      # exhaustive checksum audit vs. RFC 8391 -> results/checksum_rfc_audit.json
+python3 experiments/leaf_equivalence.py        # explicit/compact equivalence over all 128 leaves of h=7 -> results/leaf_equivalence.json
+python3 experiments/mutation_test_checksum.py  # 3 encoder mutants, differential + suite detection -> results/mutation_test_checksum.json
 python3 experiments/benchmark.py --reps 101     # standardized timing -> results/raw/
 python3 experiments/make_manifest.py            # regenerate vectors/manifest.json
-python -m pytest -q tests/                      # full correctness + negative suite (118 tests)
+python -m pytest -q tests/                      # full correctness + property + negative suite (123 tests)
 python3 state_demo/test_state.py                # durable-state fault injection (8/8)
 ```
 
@@ -83,6 +87,14 @@ cd native_bench && ./build.sh   # clones PQClean @ 0586a82, builds, writes nativ
   checksum path). Exhaustive comparison over all `c ∈ [0, 960]`: **961/961,
   zero mismatches** (`results/checksum_rfc_audit.json`, per-value table
   included). PQClean's `wots.c` uses the identical shift/pack/extract path.
+- **Explicit/compact equivalence** — `experiments/leaf_equivalence.py`
+  verifies both formats over **all 128 leaves** of the `h=7` tree: 1,536
+  checks (verification, `pkFromSig` equality, tamper/truncation/index
+  rejection), zero failures (`results/leaf_equivalence.json`).
+- **Mutation testing** — `experiments/mutation_test_checksum.py` injects three
+  single-point mutants (wrong base, reversed digits, zero-padded buffer); all
+  are caught by both the exhaustive differential and the test suite
+  (`results/mutation_test_checksum.json`).
 - **Forgery experiment** — `experiments/forgery_results.json`: buggy signatures
   accepted 20/20 by the buggy verifier, rejected 20/20 by the independent
   verifier; raw `sk[64..66]` leaked 10/10 (buggy) vs 0/10 (fixed); Monte-Carlo

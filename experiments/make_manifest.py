@@ -59,6 +59,8 @@ def main():
         "native_bench/bench_proto.c", "native_bench/bench_std.c",
         "native_bench/build.sh",
         "experiments/audit_checksum_rfc.py", "results/checksum_rfc_audit.json",
+        "experiments/leaf_equivalence.py", "results/leaf_equivalence.json",
+        "experiments/mutation_test_checksum.py", "results/mutation_test_checksum.json",
     ]
     inputs = {f: _sha256(ROOT / f) for f in files}
 

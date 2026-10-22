@@ -10,7 +10,7 @@
     "compact_core_bytes": 2368,
     "reduction_bytes": 2144,
     "reduction_pct": 47.5,
-    "generated_utc": "2026-10-22T08:53:54Z"
+    "generated": "deterministic"
   },
   "per_leaf": [
     {

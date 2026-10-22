@@ -1,6 +1,6 @@
 {
   "title": "WOTS+ checksum encoding: exhaustive differential audit vs. RFC 8391",
-  "generated_utc": "2026-10-22T08:53:54.456253+00:00",
+  "generated": "deterministic",
   "method": {
     "reference": "RFC 8391 (XMSS) Section 2.6 Algorithm 1 (base_w) and Section 3.1.5 Algorithm 5 (WOTS_sign), implemented independently in this script; PQClean wots.c (sphincs-sha2-128s-simple/clean) uses the identical path: csum << ((8 - ((WOTS_LEN2*WOTS_LOGW)%8))%8); ull_to_bytes(2); base_w(...,WOTS_LEN2,...)",
     "parameters": {

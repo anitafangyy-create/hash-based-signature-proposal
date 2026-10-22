@@ -122,7 +122,7 @@ def run() -> dict:
         "compact_core_bytes": rows[0]["compact_bytes"],
         "reduction_bytes": rows[0]["explicit_bytes"] - rows[0]["compact_bytes"],
         "reduction_pct": round(100 * (1 - rows[0]["compact_bytes"] / rows[0]["explicit_bytes"]), 1),
-        "generated_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        "generated": "deterministic",
     }
     return {"summary": summary, "per_leaf": rows}
 

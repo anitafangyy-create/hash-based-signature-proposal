@@ -124,7 +124,7 @@ def run() -> dict:
             "real_impl_suite_fails": suite_real,
         },
         "per_mutant": results,
-        "generated_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        "generated": "deterministic",
     }
 
 

@@ -124,7 +124,7 @@ def main() -> None:
     results = {
         "title": "WOTS+ checksum encoding: exhaustive differential audit "
                  "vs. RFC 8391",
-        "generated_utc": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+        "generated": "deterministic",
         "method": {
             "reference": "RFC 8391 (XMSS) Section 2.6 Algorithm 1 (base_w) "
                           "and Section 3.1.5 Algorithm 5 (WOTS_sign), "
