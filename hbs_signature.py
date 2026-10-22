@@ -134,6 +134,7 @@ class MSSSignature:
     ots_pk: List[List[bytes]]   # the Lamport public key being used
     auth_path: List[bytes]      # sibling hashes along the path to root
     leaf_index: int             # which leaf was used
+    height: int                 # tree height (for index-binding checks)
 
 
 class MerkleSignatureScheme:
@@ -150,6 +151,10 @@ class MerkleSignatureScheme:
         self.ots_keys: List[LamportKeyPair] = [
             LamportKeyPair.generate() for _ in range(self.n_leaves)
         ]
+        # State management: track which one-time keys have been consumed.
+        # Reusing a leaf index leaks the one-time secret — a catastrophic
+        # failure for any stateful hash-based signature.
+        self.used: set = set()
         # leaf hashes: H(serialize_pk(ots_pk))
         self.leaf_hashes: List[bytes] = [
             self._hash_leaf_pk(kp.pk) for kp in self.ots_keys
@@ -195,17 +200,31 @@ class MerkleSignatureScheme:
                             leaf_pk_digests=self.leaf_hashes)
 
     def sign(self, msg: bytes, leaf_index: int) -> MSSSignature:
-        assert 0 <= leaf_index < self.n_leaves, "leaf already used / out of range"
+        assert 0 <= leaf_index < self.n_leaves, "leaf index out of range"
+        if leaf_index in self.used:
+            raise ValueError(
+                f"OTS key at leaf {leaf_index} already used; reusing a "
+                f"one-time key would leak the secret (stateful HBS).")
+        self.used.add(leaf_index)
         kp = self.ots_keys[leaf_index]
         ots_sig = kp.sign(msg)
         path = self.auth_path(leaf_index)
         return MSSSignature(ots_sig=ots_sig,
                             ots_pk=kp.pk,
                             auth_path=path,
-                            leaf_index=leaf_index)
+                            leaf_index=leaf_index,
+                            height=self.height)
 
     @staticmethod
     def verify(msg: bytes, sig: MSSSignature, root: bytes) -> bool:
+        # F3 hardening: bind the leaf index to the tree height and require an
+        # authentication path of the correct length, so an out-of-range index
+        # (whose high bits the fold loop would otherwise ignore) is rejected.
+        if not (isinstance(sig.leaf_index, int)
+                and 0 <= sig.leaf_index < 2 ** sig.height):
+            return False
+        if len(sig.auth_path) != sig.height:
+            return False
         # 1. Verify the inner Lamport signature
         if not LamportKeyPair.verify(msg, sig.ots_sig, sig.ots_pk):
             return False
@@ -233,6 +252,11 @@ def sizes_for_height(height: int) -> dict:
     pk_mss = HASH_LEN
     # MSS signature = Lamport sig (8192) + Lamport pk (16384)
     #                 + auth path (height * 32)
+    # NOTE: compact mode (rebuilding the OTS public key from the signature)
+    # is NOT applicable to raw Lamport, because the leaf commits to the full
+    # OTS public key H(pk[0]||pk[1]); a Lamport signature reveals only the
+    # preimages for the actual bit values, so the other half is not
+    # recoverable. Compact mode is applicable to WOTS+, see experiment_v2.py.
     sig_mss = (LamportKeyPair.sig_size_bytes()
                + LamportKeyPair.pk_size_bytes()
                + height * HASH_LEN)
@@ -267,13 +291,43 @@ def _selftest():
     for i in range(mss.n_leaves):
         s = mss.sign(f"message #{i}".encode(), i)
         assert MerkleSignatureScheme.verify(f"message #{i}".encode(), s, root)
-    # tamper
-    bad = mss.sign(b"tampered", 0)
+    print(f"[ok] MSS round-trip, height=4, {mss.n_leaves} leaves")
+
+    # tamper on a FRESH instance (re-signing a used leaf is forbidden)
+    mss2 = MerkleSignatureScheme(height=1)
+    root2 = mss2.public_key().root
+    bad = mss2.sign(b"tampered", 0)
     bad.ots_sig[0] = bytes([bad.ots_sig[0][0] ^ 1]) + bad.ots_sig[0][1:]
-    assert not MerkleSignatureScheme.verify(b"tampered", bad, root), \
+    assert not MerkleSignatureScheme.verify(b"tampered", bad, root2), \
         "tampered signature accepted"
-    print(f"[ok] MSS round-trip, height=4, {mss.n_leaves} leaves, "
-          f"tamper rejected")
+    # one-time-use enforcement
+    try:
+        mss2.sign(b"reuse", 0)
+        raise AssertionError("reuse of a one-time key was NOT prevented")
+    except ValueError:
+        pass
+    print(f"[ok] MSS tamper rejected; one-time-key reuse prevented")
+
+    # negative: wrong authentication path
+    bad_path = mss2.auth_path(0)
+    bad_path[0] = bytes([bad_path[0][0] ^ 1]) + bad_path[0][1:]
+    wrong_sig = MSSSignature(ots_sig=bad.ots_sig, ots_pk=bad.ots_pk,
+                             auth_path=bad_path, leaf_index=0, height=1)
+    assert not MerkleSignatureScheme.verify(b"tampered", wrong_sig, root2), \
+        "wrong auth path accepted"
+    # negative: malformed (wrong-length) OTS signature
+    malformed = MSSSignature(ots_sig=bad.ots_sig[:10], ots_pk=bad.ots_pk,
+                             auth_path=bad.auth_path, leaf_index=0, height=1)
+    assert not MerkleSignatureScheme.verify(b"tampered", malformed, root2), \
+        "malformed signature accepted"
+    # negative: out-of-range leaf index
+    try:
+        mss2.sign(b"oob", 99)
+        raise AssertionError("out-of-range index not rejected")
+    except Exception:
+        pass
+    print(f"[ok] MSS negative tests: wrong auth path / malformed / OOB index rejected")
+
     print("=== self-test passed ===\n")
 
 

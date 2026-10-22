@@ -1,0 +1,66 @@
+{
+  "by_height": {
+    "1": {
+      "w": 16,
+      "n_bytes": 32,
+      "len1": 64,
+      "len2": 3,
+      "tree_height": 1,
+      "wots_elements": 67,
+      "ots_signature_bytes": 2144,
+      "ots_public_key_bytes": 2144,
+      "authentication_path_bytes": 32,
+      "explicit_payload_bytes": 4320,
+      "compact_payload_bytes": 2176,
+      "explicit_serialized_bytes": 4321,
+      "compact_serialized_bytes": 2177,
+      "public_key_bytes": 32,
+      "tree_storage_bytes": 96,
+      "full_ots_key_storage_bytes": 4288
+    },
+    "4": {
+      "w": 16,
+      "n_bytes": 32,
+      "len1": 64,
+      "len2": 3,
+      "tree_height": 4,
+      "wots_elements": 67,
+      "ots_signature_bytes": 2144,
+      "ots_public_key_bytes": 2144,
+      "authentication_path_bytes": 128,
+      "explicit_payload_bytes": 4416,
+      "compact_payload_bytes": 2272,
+      "explicit_serialized_bytes": 4417,
+      "compact_serialized_bytes": 2273,
+      "public_key_bytes": 32,
+      "tree_storage_bytes": 992,
+      "full_ots_key_storage_bytes": 34304
+    },
+    "7": {
+      "w": 16,
+      "n_bytes": 32,
+      "len1": 64,
+      "len2": 3,
+      "tree_height": 7,
+      "wots_elements": 67,
+      "ots_signature_bytes": 2144,
+      "ots_public_key_bytes": 2144,
+      "authentication_path_bytes": 224,
+      "explicit_payload_bytes": 4512,
+      "compact_payload_bytes": 2368,
+      "explicit_serialized_bytes": 4513,
+      "compact_serialized_bytes": 2369,
+      "public_key_bytes": 32,
+      "tree_storage_bytes": 8160,
+      "full_ots_key_storage_bytes": 274432
+    }
+  },
+  "cross_check": {
+    "code_ots_signature_bytes": 2144,
+    "accounting_ots_signature_bytes": 2144,
+    "code_ots_public_key_bytes": 2144,
+    "accounting_ots_public_key_bytes": 2144,
+    "ots_signature_matches": true,
+    "ots_public_key_matches": true
+  }
+}

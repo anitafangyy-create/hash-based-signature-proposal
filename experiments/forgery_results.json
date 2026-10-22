@@ -1,0 +1,58 @@
+{
+  "matrix": {
+    "A_buggy_sign__buggy_verify": {
+      "accepted": 20,
+      "expected": true,
+      "trials": 20,
+      "passed": true
+    },
+    "B_buggy_sign__independent": {
+      "accepted": 0,
+      "expected": false,
+      "trials": 20,
+      "passed": true
+    },
+    "C_fixed_sign__independent": {
+      "accepted": 20,
+      "expected": true,
+      "trials": 20,
+      "passed": true
+    },
+    "D_fixed_sign__production": {
+      "accepted": 20,
+      "expected": true,
+      "trials": 20,
+      "passed": true
+    },
+    "D_tampered_fixed__production": {
+      "accepted": 0,
+      "expected": false,
+      "trials": 20,
+      "passed": true
+    }
+  },
+  "leakage": {
+    "trials": 10,
+    "buggy_exposes_raw_checksum_secrets": 10,
+    "fixed_exposes_raw_checksum_secrets": 0,
+    "buggy_checksum_encoding_constant": 10,
+    "distinct_fixed_checksum_positions_observed": 10,
+    "leaked_material": "3 of 67 WOTS+ chain secrets (sk[64..66]), per signature"
+  },
+  "forgery_condition": {
+    "monte_carlo_samples": 20000,
+    "monte_carlo_hits": 0,
+    "monte_carlo_rate": 0.0,
+    "analytic_per_digit_probability": 0.53125,
+    "analytic_upper_bound": 2.625018423009133e-18,
+    "note": "Single-observation universal forgery requires all 64 message digits to advance simultaneously; probability is negligible. The defect's concrete impact is secret leakage, not forgery."
+  },
+  "reuse_forgery": {
+    "assumption": "one-time key reused across 32 signatures",
+    "search_budget": 4000,
+    "target_message_found": true,
+    "forgery_accepted_by_independent_verifier": true,
+    "control_fixed_implementation_retreat_required": true,
+    "control_fixed_forgery_blocked": true
+  }
+}

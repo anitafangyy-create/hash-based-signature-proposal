@@ -20,8 +20,12 @@ Reference:
       Algorithm 6 (wots_sign), Algorithm 7 (wots_pkFromSig).
     * https://github.com/sphincs/sphincsplus
 
-Security: existential unforgeability under chosen-message attacks in the
-random oracle model, assuming the hash is second-preimage resistant.
+Security note: the *structure* follows WOTS+ (FIPS 205), but this prototype
+omits the standard keyed function and address separation, so it does NOT inherit
+FIPS 205's EU-CMA proof. No security level is claimed. The checksum encoding
+must be implemented exactly as ``wots_checksum`` (see that function's note); an
+earlier draft used ``base_w(c.to_bytes(32,'big'), LEN2)``, which silently
+produced the constant ``[0,0,0]`` and defeated the checksum — fixed 2026-10-19.
 """
 
 from __future__ import annotations
@@ -46,7 +50,10 @@ LEN = LEN1 + LEN2                              # = 67
 def base_w(data: bytes, out_len: int) -> list[int]:
     """Convert a byte string to a list of base-W digits (each 0..W-1).
 
-    Uses LOG_W bits per digit (LSB-first within each byte)."""
+    Processes the input big-endian and, within the accumulated window,
+    takes LOG_W-bit digits most-significant-nibble first. Correct for
+    fixed-length inputs whose bit length is an exact multiple of LOG_W
+    (e.g. a 32-byte digest -> 64 digits)."""
     digits = []
     in_pos = 0
     in_bits = 0
@@ -59,6 +66,28 @@ def base_w(data: bytes, out_len: int) -> list[int]:
         in_bits -= LOG_W
         digits.append((total >> in_bits) & (W - 1))
         total &= (1 << in_bits) - 1
+    return digits
+
+
+def wots_checksum(c: int) -> list[int]:
+    """Encode the WOTS+ checksum ``c`` (0 <= c <= 960 for w=16, len1=64) as
+    ``LEN2`` = 3 base-W digits, most-significant digit first.
+
+    IMPORTANT: this is the correct integer base-W decomposition. It must NOT
+    be produced via ``base_w(c.to_bytes(32, 'big'), LEN2)``: because
+    ``c <= 960`` fits in two bytes, the 32-byte big-endian representation is
+    zero-padded, and ``base_w`` would read those leading zero nibbles and
+    always return ``[0, 0, 0]`` — a defect that silently defeats the WOTS+
+    checksum and exposes the three checksum-chain secrets. See §3.2.1 of the
+    paper and the 2026-10-19 fix note."""
+    if not isinstance(c, int) or not 0 <= c <= LEN1 * (W - 1):
+        raise ValueError("checksum out of range [0, %d]" % (LEN1 * (W - 1)))
+    digits = []
+    cc = c
+    for _ in range(LEN2):
+        digits.append(cc % W)
+        cc //= W
+    digits.reverse()
     return digits
 
 
@@ -92,7 +121,7 @@ class WOTSKeyPair:
         digest = H_message(msg)
         msg_digits = base_w(digest, LEN1)
         checksum = sum(W - 1 - d for d in msg_digits)
-        checksum_digits = base_w(checksum.to_bytes(N, "big"), LEN2)
+        checksum_digits = wots_checksum(checksum)
         digits = msg_digits + checksum_digits
         assert len(digits) == LEN
         return [chain(self.sk[i], 0, digits[i]) for i in range(LEN)]
@@ -104,7 +133,7 @@ class WOTSKeyPair:
         digest = H_message(msg)
         msg_digits = base_w(digest, LEN1)
         checksum = sum(W - 1 - d for d in msg_digits)
-        checksum_digits = base_w(checksum.to_bytes(N, "big"), LEN2)
+        checksum_digits = wots_checksum(checksum)
         digits = msg_digits + checksum_digits
         for i in range(LEN):
             recomputed = chain(sig[i], digits[i], W - 1 - digits[i])
@@ -147,9 +176,32 @@ if __name__ == "__main__":
         "wrong message accepted"
     print("[ok] wrong-message rejection")
 
+    # malformed input (wrong-length signature / public key)
+    assert not WOTSKeyPair.verify(msg, sig[:10], kp.pk), \
+        "malformed signature accepted"
+    assert not WOTSKeyPair.verify(msg, sig, kp.pk[:10]), \
+        "malformed public key accepted"
+    print("[ok] malformed-input rejection")
+
     # sanity on base_w
     digits = base_w(b"\xff\x00", 4)
     assert digits == [15, 15, 0, 0], f"base_w got {digits}"
     print("[ok] base_w sanity: \\xff\\x00 ->", digits)
+
+    # checksum encoding boundary tests (the bug was: base_w(c.to_bytes(32,'big'),3))
+    assert wots_checksum(0) == [0, 0, 0], wots_checksum(0)
+    assert wots_checksum(1) == [0, 0, 1], wots_checksum(1)
+    assert wots_checksum(15) == [0, 0, 15], wots_checksum(15)
+    assert wots_checksum(16) == [0, 1, 0], wots_checksum(16)
+    assert wots_checksum(960) == [3, 12, 0], wots_checksum(960)
+    print("[ok] wots_checksum boundary: 0,1,15,16,960 ->",
+          wots_checksum(0), wots_checksum(1), wots_checksum(15),
+          wots_checksum(16), wots_checksum(960))
+
+    # confirm sign/verify stay consistent across varied messages
+    for m in [b"", b"a", b"hello world", b"\x00" * 31, os.urandom(50)]:
+        s = kp.sign(m)
+        assert WOTSKeyPair.verify(m, s, kp.pk), f"verify failed for {m!r}"
+    print("[ok] checksum-consistent round-trip across varied messages")
 
     print("=== WOTS+ self-test passed ===")

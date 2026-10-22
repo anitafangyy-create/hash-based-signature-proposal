@@ -1,0 +1,2292 @@
+{
+  "environment": {
+    "cpu": "Apple M1 (arm64)",
+    "compiler": "Apple clang 17.0.0",
+    "pqclean_commit": "0586a82",
+    "sessions": 3,
+    "cooldown_s": 12,
+    "reps_standards": 101,
+    "reps_prototype": 31,
+    "message_bytes": 64,
+    "timing": "clock_gettime(CLOCK_MONOTONIC)",
+    "note": "Rotated session order; no CPU pinning; PQClean clean C. Reported values are cross-session medians with the min/max range across the per-session medians."
+  },
+  "sessions": [
+    {
+      "session": 1,
+      "order": [
+        "mldsa44",
+        "mldsa65",
+        "sphincs128f",
+        "sphincs128s",
+        "proto"
+      ],
+      "rows": [
+        {
+          "scheme": "ML-DSA-44",
+          "pk": 1312,
+          "sk": 2560,
+          "sig": 2420,
+          "keygen_ms": 0.066,
+          "keygen_min": 0.059,
+          "keygen_iqr": 0.032,
+          "sign_ms": 0.295,
+          "sign_min": 0.105,
+          "sign_iqr": 0.281,
+          "verify_ms": 0.066,
+          "verify_min": 0.064,
+          "verify_iqr": 0.03,
+          "verify_ok": 1
+        },
+        {
+          "scheme": "ML-DSA-65",
+          "pk": 1952,
+          "sk": 4032,
+          "sig": 3309,
+          "keygen_ms": 0.12,
+          "keygen_min": 0.115,
+          "keygen_iqr": 0.094,
+          "sign_ms": 0.361,
+          "sign_min": 0.157,
+          "sign_iqr": 0.332,
+          "verify_ms": 0.106,
+          "verify_min": 0.104,
+          "verify_iqr": 0.001,
+          "verify_ok": 1
+        },
+        {
+          "scheme": "SLH-DSA-SHA2-128f (PQClean)",
+          "pk": 32,
+          "sk": 64,
+          "sig": 17088,
+          "keygen_ms": 1.139,
+          "keygen_min": 1.12,
+          "keygen_iqr": 0.044,
+          "sign_ms": 27.703,
+          "sign_min": 26.491,
+          "sign_iqr": 1.958,
+          "verify_ms": 1.636,
+          "verify_min": 1.61,
+          "verify_iqr": 0.056,
+          "verify_ok": 1
+        },
+        {
+          "scheme": "SLH-DSA-SHA2-128s (PQClean)",
+          "pk": 32,
+          "sk": 64,
+          "sig": 7856,
+          "keygen_ms": 78.016,
+          "keygen_min": 70.997,
+          "keygen_iqr": 10.211,
+          "sign_ms": 661.468,
+          "sign_min": 541.796,
+          "sign_iqr": 160.744,
+          "verify_ms": 0.544,
+          "verify_min": 0.532,
+          "verify_iqr": 0.017,
+          "verify_ok": 1
+        },
+        {
+          "kind": "lamport",
+          "compact": false,
+          "h": 1,
+          "n": 2,
+          "keygen_ms": 0.587,
+          "keygen_min": 0.581,
+          "keygen_iqr": 0.0195,
+          "sign_ms": 0.001,
+          "sign_min": 0.001,
+          "sign_iqr": 0.0,
+          "verify_ms": 0.114,
+          "verify_min": 0.111,
+          "verify_iqr": 0.002,
+          "sig_bytes": 24608,
+          "verify_ok": 1
+        },
+        {
+          "kind": "lamport",
+          "compact": false,
+          "h": 2,
+          "n": 4,
+          "keygen_ms": 1.197,
+          "keygen_min": 1.17,
+          "keygen_iqr": 0.0415,
+          "sign_ms": 0.002,
+          "sign_min": 0.002,
+          "sign_iqr": 0.0,
+          "verify_ms": 0.114,
+          "verify_min": 0.111,
+          "verify_iqr": 0.0165,
+          "sig_bytes": 24640,
+          "verify_ok": 1
+        },
+        {
+          "kind": "lamport",
+          "compact": false,
+          "h": 3,
+          "n": 8,
+          "keygen_ms": 2.373,
+          "keygen_min": 2.34,
+          "keygen_iqr": 0.04,
+          "sign_ms": 0.004,
+          "sign_min": 0.003,
+          "sign_iqr": 0.001,
+          "verify_ms": 0.115,
+          "verify_min": 0.112,
+          "verify_iqr": 0.0055,
+          "sig_bytes": 24672,
+          "verify_ok": 1
+        },
+        {
+          "kind": "lamport",
+          "compact": false,
+          "h": 4,
+          "n": 16,
+          "keygen_ms": 4.773,
+          "keygen_min": 4.679,
+          "keygen_iqr": 0.104,
+          "sign_ms": 0.007,
+          "sign_min": 0.007,
+          "sign_iqr": 0.0,
+          "verify_ms": 0.116,
+          "verify_min": 0.112,
+          "verify_iqr": 0.002,
+          "sig_bytes": 24704,
+          "verify_ok": 1
+        },
+        {
+          "kind": "lamport",
+          "compact": false,
+          "h": 5,
+          "n": 32,
+          "keygen_ms": 9.78,
+          "keygen_min": 9.311,
+          "keygen_iqr": 0.965,
+          "sign_ms": 0.014,
+          "sign_min": 0.013,
+          "sign_iqr": 0.0,
+          "verify_ms": 0.115,
+          "verify_min": 0.112,
+          "verify_iqr": 0.0025,
+          "sig_bytes": 24736,
+          "verify_ok": 1
+        },
+        {
+          "kind": "lamport",
+          "compact": false,
+          "h": 6,
+          "n": 64,
+          "keygen_ms": 21.023,
+          "keygen_min": 18.985,
+          "keygen_iqr": 6.7805,
+          "sign_ms": 0.065,
+          "sign_min": 0.028,
+          "sign_iqr": 0.054,
+          "verify_ms": 0.138,
+          "verify_min": 0.116,
+          "verify_iqr": 0.118,
+          "sig_bytes": 24768,
+          "verify_ok": 1
+        },
+        {
+          "kind": "lamport",
+          "compact": false,
+          "h": 7,
+          "n": 128,
+          "keygen_ms": 43.003,
+          "keygen_min": 36.927,
+          "keygen_iqr": 7.0035,
+          "sign_ms": 0.055,
+          "sign_min": 0.055,
+          "sign_iqr": 0.001,
+          "verify_ms": 0.16,
+          "verify_min": 0.115,
+          "verify_iqr": 0.1435,
+          "sig_bytes": 24800,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": false,
+          "h": 1,
+          "n": 2,
+          "keygen_ms": 0.537,
+          "keygen_min": 0.518,
+          "keygen_iqr": 0.083,
+          "sign_ms": 0.125,
+          "sign_min": 0.121,
+          "sign_iqr": 0.004,
+          "verify_ms": 0.129,
+          "verify_min": 0.124,
+          "verify_iqr": 0.001,
+          "sig_bytes": 4320,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": false,
+          "h": 2,
+          "n": 4,
+          "keygen_ms": 1.059,
+          "keygen_min": 1.035,
+          "keygen_iqr": 0.0545,
+          "sign_ms": 0.123,
+          "sign_min": 0.121,
+          "sign_iqr": 0.0045,
+          "verify_ms": 0.127,
+          "verify_min": 0.124,
+          "verify_iqr": 0.0045,
+          "sig_bytes": 4352,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": false,
+          "h": 3,
+          "n": 8,
+          "keygen_ms": 2.149,
+          "keygen_min": 2.086,
+          "keygen_iqr": 0.109,
+          "sign_ms": 0.128,
+          "sign_min": 0.123,
+          "sign_iqr": 0.0005,
+          "verify_ms": 0.127,
+          "verify_min": 0.124,
+          "verify_iqr": 0.004,
+          "sig_bytes": 4384,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": false,
+          "h": 4,
+          "n": 16,
+          "keygen_ms": 4.253,
+          "keygen_min": 4.18,
+          "keygen_iqr": 0.129,
+          "sign_ms": 0.128,
+          "sign_min": 0.127,
+          "sign_iqr": 0.002,
+          "verify_ms": 0.126,
+          "verify_min": 0.125,
+          "verify_iqr": 0.001,
+          "sig_bytes": 4416,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": false,
+          "h": 5,
+          "n": 32,
+          "keygen_ms": 9.914,
+          "keygen_min": 8.795,
+          "keygen_iqr": 2.1275,
+          "sign_ms": 0.136,
+          "sign_min": 0.133,
+          "sign_iqr": 0.002,
+          "verify_ms": 0.128,
+          "verify_min": 0.126,
+          "verify_iqr": 0.0035,
+          "sig_bytes": 4448,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": false,
+          "h": 6,
+          "n": 64,
+          "keygen_ms": 17.669,
+          "keygen_min": 16.839,
+          "keygen_iqr": 0.9815,
+          "sign_ms": 0.149,
+          "sign_min": 0.146,
+          "sign_iqr": 0.003,
+          "verify_ms": 0.128,
+          "verify_min": 0.126,
+          "verify_iqr": 0.004,
+          "sig_bytes": 4480,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": false,
+          "h": 7,
+          "n": 128,
+          "keygen_ms": 35.872,
+          "keygen_min": 33.764,
+          "keygen_iqr": 6.2315,
+          "sign_ms": 0.247,
+          "sign_min": 0.18,
+          "sign_iqr": 0.149,
+          "verify_ms": 0.155,
+          "verify_min": 0.13,
+          "verify_iqr": 0.2345,
+          "sig_bytes": 4512,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": true,
+          "h": 1,
+          "n": 2,
+          "keygen_ms": 0.754,
+          "keygen_min": 0.537,
+          "keygen_iqr": 0.5725,
+          "sign_ms": 0.131,
+          "sign_min": 0.126,
+          "sign_iqr": 0.1615,
+          "verify_ms": 0.591,
+          "verify_min": 0.251,
+          "verify_iqr": 0.8245,
+          "sig_bytes": 2176,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": true,
+          "h": 2,
+          "n": 4,
+          "keygen_ms": 3.495,
+          "keygen_min": 1.121,
+          "keygen_iqr": 3.1695,
+          "sign_ms": 0.127,
+          "sign_min": 0.126,
+          "sign_iqr": 0.006,
+          "verify_ms": 0.251,
+          "verify_min": 0.25,
+          "verify_iqr": 0.025,
+          "sig_bytes": 2208,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": true,
+          "h": 3,
+          "n": 8,
+          "keygen_ms": 2.999,
+          "keygen_min": 2.184,
+          "keygen_iqr": 1.4615,
+          "sign_ms": 0.184,
+          "sign_min": 0.128,
+          "sign_iqr": 0.2775,
+          "verify_ms": 0.53,
+          "verify_min": 0.251,
+          "verify_iqr": 0.365,
+          "sig_bytes": 2240,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": true,
+          "h": 4,
+          "n": 16,
+          "keygen_ms": 4.853,
+          "keygen_min": 4.355,
+          "keygen_iqr": 0.439,
+          "sign_ms": 0.129,
+          "sign_min": 0.126,
+          "sign_iqr": 0.004,
+          "verify_ms": 0.257,
+          "verify_min": 0.25,
+          "verify_iqr": 0.0495,
+          "sig_bytes": 2272,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": true,
+          "h": 5,
+          "n": 32,
+          "keygen_ms": 9.149,
+          "keygen_min": 8.429,
+          "keygen_iqr": 1.4915,
+          "sign_ms": 0.153,
+          "sign_min": 0.138,
+          "sign_iqr": 0.041,
+          "verify_ms": 0.252,
+          "verify_min": 0.243,
+          "verify_iqr": 0.0025,
+          "sig_bytes": 2304,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": true,
+          "h": 6,
+          "n": 64,
+          "keygen_ms": 21.128,
+          "keygen_min": 17.663,
+          "keygen_iqr": 4.152,
+          "sign_ms": 0.153,
+          "sign_min": 0.152,
+          "sign_iqr": 0.0365,
+          "verify_ms": 0.276,
+          "verify_min": 0.252,
+          "verify_iqr": 0.139,
+          "sig_bytes": 2336,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": true,
+          "h": 7,
+          "n": 128,
+          "keygen_ms": 36.04,
+          "keygen_min": 33.831,
+          "keygen_iqr": 3.071,
+          "sign_ms": 0.181,
+          "sign_min": 0.179,
+          "sign_iqr": 0.012,
+          "verify_ms": 0.285,
+          "verify_min": 0.253,
+          "verify_iqr": 0.0495,
+          "sig_bytes": 2368,
+          "verify_ok": 1
+        }
+      ]
+    },
+    {
+      "session": 2,
+      "order": [
+        "proto",
+        "sphincs128s",
+        "sphincs128f",
+        "mldsa65",
+        "mldsa44"
+      ],
+      "rows": [
+        {
+          "kind": "lamport",
+          "compact": false,
+          "h": 1,
+          "n": 2,
+          "keygen_ms": 0.594,
+          "keygen_min": 0.566,
+          "keygen_iqr": 0.03,
+          "sign_ms": 0.001,
+          "sign_min": 0.001,
+          "sign_iqr": 0.0,
+          "verify_ms": 0.11,
+          "verify_min": 0.109,
+          "verify_iqr": 0.0015,
+          "sig_bytes": 24608,
+          "verify_ok": 1
+        },
+        {
+          "kind": "lamport",
+          "compact": false,
+          "h": 2,
+          "n": 4,
+          "keygen_ms": 1.16,
+          "keygen_min": 1.136,
+          "keygen_iqr": 0.0725,
+          "sign_ms": 0.002,
+          "sign_min": 0.001,
+          "sign_iqr": 0.0,
+          "verify_ms": 0.112,
+          "verify_min": 0.11,
+          "verify_iqr": 0.004,
+          "sig_bytes": 24640,
+          "verify_ok": 1
+        },
+        {
+          "kind": "lamport",
+          "compact": false,
+          "h": 3,
+          "n": 8,
+          "keygen_ms": 2.331,
+          "keygen_min": 2.269,
+          "keygen_iqr": 0.1635,
+          "sign_ms": 0.004,
+          "sign_min": 0.003,
+          "sign_iqr": 0.001,
+          "verify_ms": 0.112,
+          "verify_min": 0.11,
+          "verify_iqr": 0.002,
+          "sig_bytes": 24672,
+          "verify_ok": 1
+        },
+        {
+          "kind": "lamport",
+          "compact": false,
+          "h": 4,
+          "n": 16,
+          "keygen_ms": 4.701,
+          "keygen_min": 4.577,
+          "keygen_iqr": 0.612,
+          "sign_ms": 0.007,
+          "sign_min": 0.006,
+          "sign_iqr": 0.0,
+          "verify_ms": 0.113,
+          "verify_min": 0.111,
+          "verify_iqr": 0.001,
+          "sig_bytes": 24704,
+          "verify_ok": 1
+        },
+        {
+          "kind": "lamport",
+          "compact": false,
+          "h": 5,
+          "n": 32,
+          "keygen_ms": 9.835,
+          "keygen_min": 9.186,
+          "keygen_iqr": 0.8165,
+          "sign_ms": 0.014,
+          "sign_min": 0.013,
+          "sign_iqr": 0.001,
+          "verify_ms": 0.114,
+          "verify_min": 0.111,
+          "verify_iqr": 0.003,
+          "sig_bytes": 24736,
+          "verify_ok": 1
+        },
+        {
+          "kind": "lamport",
+          "compact": false,
+          "h": 6,
+          "n": 64,
+          "keygen_ms": 19.684,
+          "keygen_min": 19.032,
+          "keygen_iqr": 1.5655,
+          "sign_ms": 0.028,
+          "sign_min": 0.027,
+          "sign_iqr": 0.0,
+          "verify_ms": 0.116,
+          "verify_min": 0.115,
+          "verify_iqr": 0.001,
+          "sig_bytes": 24768,
+          "verify_ok": 1
+        },
+        {
+          "kind": "lamport",
+          "compact": false,
+          "h": 7,
+          "n": 128,
+          "keygen_ms": 39.917,
+          "keygen_min": 38.449,
+          "keygen_iqr": 2.1045,
+          "sign_ms": 0.056,
+          "sign_min": 0.055,
+          "sign_iqr": 0.0,
+          "verify_ms": 0.115,
+          "verify_min": 0.112,
+          "verify_iqr": 0.004,
+          "sig_bytes": 24800,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": false,
+          "h": 1,
+          "n": 2,
+          "keygen_ms": 0.533,
+          "keygen_min": 0.52,
+          "keygen_iqr": 0.019,
+          "sign_ms": 0.125,
+          "sign_min": 0.122,
+          "sign_iqr": 0.002,
+          "verify_ms": 0.13,
+          "verify_min": 0.124,
+          "verify_iqr": 0.0085,
+          "sig_bytes": 4320,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": false,
+          "h": 2,
+          "n": 4,
+          "keygen_ms": 1.078,
+          "keygen_min": 1.039,
+          "keygen_iqr": 0.0395,
+          "sign_ms": 0.125,
+          "sign_min": 0.122,
+          "sign_iqr": 0.002,
+          "verify_ms": 0.13,
+          "verify_min": 0.125,
+          "verify_iqr": 0.034,
+          "sig_bytes": 4352,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": false,
+          "h": 3,
+          "n": 8,
+          "keygen_ms": 2.131,
+          "keygen_min": 2.092,
+          "keygen_iqr": 0.0595,
+          "sign_ms": 0.127,
+          "sign_min": 0.124,
+          "sign_iqr": 0.0095,
+          "verify_ms": 0.128,
+          "verify_min": 0.125,
+          "verify_iqr": 0.0035,
+          "sig_bytes": 4384,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": false,
+          "h": 4,
+          "n": 16,
+          "keygen_ms": 4.319,
+          "keygen_min": 4.2,
+          "keygen_iqr": 0.6995,
+          "sign_ms": 0.13,
+          "sign_min": 0.127,
+          "sign_iqr": 0.003,
+          "verify_ms": 0.127,
+          "verify_min": 0.125,
+          "verify_iqr": 0.002,
+          "sig_bytes": 4416,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": false,
+          "h": 5,
+          "n": 32,
+          "keygen_ms": 9.094,
+          "keygen_min": 8.38,
+          "keygen_iqr": 0.734,
+          "sign_ms": 0.136,
+          "sign_min": 0.133,
+          "sign_iqr": 0.003,
+          "verify_ms": 0.13,
+          "verify_min": 0.126,
+          "verify_iqr": 0.003,
+          "sig_bytes": 4448,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": false,
+          "h": 6,
+          "n": 64,
+          "keygen_ms": 17.686,
+          "keygen_min": 17.371,
+          "keygen_iqr": 0.318,
+          "sign_ms": 0.149,
+          "sign_min": 0.147,
+          "sign_iqr": 0.003,
+          "verify_ms": 0.128,
+          "verify_min": 0.126,
+          "verify_iqr": 0.0025,
+          "sig_bytes": 4480,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": false,
+          "h": 7,
+          "n": 128,
+          "keygen_ms": 35.425,
+          "keygen_min": 34.889,
+          "keygen_iqr": 1.2185,
+          "sign_ms": 0.186,
+          "sign_min": 0.177,
+          "sign_iqr": 0.0295,
+          "verify_ms": 0.131,
+          "verify_min": 0.124,
+          "verify_iqr": 0.0035,
+          "sig_bytes": 4512,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": true,
+          "h": 1,
+          "n": 2,
+          "keygen_ms": 0.536,
+          "keygen_min": 0.518,
+          "keygen_iqr": 0.033,
+          "sign_ms": 0.125,
+          "sign_min": 0.121,
+          "sign_iqr": 0.0045,
+          "verify_ms": 0.245,
+          "verify_min": 0.241,
+          "verify_iqr": 0.0035,
+          "sig_bytes": 2176,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": true,
+          "h": 2,
+          "n": 4,
+          "keygen_ms": 1.049,
+          "keygen_min": 1.019,
+          "keygen_iqr": 0.018,
+          "sign_ms": 0.128,
+          "sign_min": 0.122,
+          "sign_iqr": 0.037,
+          "verify_ms": 0.245,
+          "verify_min": 0.24,
+          "verify_iqr": 0.006,
+          "sig_bytes": 2208,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": true,
+          "h": 3,
+          "n": 8,
+          "keygen_ms": 2.138,
+          "keygen_min": 2.08,
+          "keygen_iqr": 0.0975,
+          "sign_ms": 0.125,
+          "sign_min": 0.123,
+          "sign_iqr": 0.003,
+          "verify_ms": 0.244,
+          "verify_min": 0.242,
+          "verify_iqr": 0.003,
+          "sig_bytes": 2240,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": true,
+          "h": 4,
+          "n": 16,
+          "keygen_ms": 4.289,
+          "keygen_min": 4.194,
+          "keygen_iqr": 0.4135,
+          "sign_ms": 0.129,
+          "sign_min": 0.127,
+          "sign_iqr": 0.004,
+          "verify_ms": 0.245,
+          "verify_min": 0.238,
+          "verify_iqr": 0.0035,
+          "sig_bytes": 2272,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": true,
+          "h": 5,
+          "n": 32,
+          "keygen_ms": 9.096,
+          "keygen_min": 8.376,
+          "keygen_iqr": 0.759,
+          "sign_ms": 0.139,
+          "sign_min": 0.136,
+          "sign_iqr": 0.001,
+          "verify_ms": 0.251,
+          "verify_min": 0.243,
+          "verify_iqr": 0.001,
+          "sig_bytes": 2304,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": true,
+          "h": 6,
+          "n": 64,
+          "keygen_ms": 17.526,
+          "keygen_min": 17.227,
+          "keygen_iqr": 0.214,
+          "sign_ms": 0.149,
+          "sign_min": 0.146,
+          "sign_iqr": 0.006,
+          "verify_ms": 0.247,
+          "verify_min": 0.243,
+          "verify_iqr": 0.003,
+          "sig_bytes": 2336,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": true,
+          "h": 7,
+          "n": 128,
+          "keygen_ms": 35.26,
+          "keygen_min": 34.547,
+          "keygen_iqr": 1.0915,
+          "sign_ms": 0.176,
+          "sign_min": 0.173,
+          "sign_iqr": 0.0085,
+          "verify_ms": 0.246,
+          "verify_min": 0.244,
+          "verify_iqr": 0.003,
+          "sig_bytes": 2368,
+          "verify_ok": 1
+        },
+        {
+          "scheme": "SLH-DSA-SHA2-128s (PQClean)",
+          "pk": 32,
+          "sk": 64,
+          "sig": 7856,
+          "keygen_ms": 74.902,
+          "keygen_min": 72.579,
+          "keygen_iqr": 4.953,
+          "sign_ms": 593.73,
+          "sign_min": 547.433,
+          "sign_iqr": 56.062,
+          "verify_ms": 0.564,
+          "verify_min": 0.546,
+          "verify_iqr": 0.032,
+          "verify_ok": 1
+        },
+        {
+          "scheme": "SLH-DSA-SHA2-128f (PQClean)",
+          "pk": 32,
+          "sk": 64,
+          "sig": 17088,
+          "keygen_ms": 1.119,
+          "keygen_min": 1.086,
+          "keygen_iqr": 0.072,
+          "sign_ms": 27.905,
+          "sign_min": 26.821,
+          "sign_iqr": 1.993,
+          "verify_ms": 1.437,
+          "verify_min": 1.388,
+          "verify_iqr": 0.09,
+          "verify_ok": 1
+        },
+        {
+          "scheme": "ML-DSA-65",
+          "pk": 1952,
+          "sk": 4032,
+          "sig": 3309,
+          "keygen_ms": 0.115,
+          "keygen_min": 0.111,
+          "keygen_iqr": 0.002,
+          "sign_ms": 0.335,
+          "sign_min": 0.152,
+          "sign_iqr": 0.378,
+          "verify_ms": 0.104,
+          "verify_min": 0.101,
+          "verify_iqr": 0.004,
+          "verify_ok": 1
+        },
+        {
+          "scheme": "ML-DSA-44",
+          "pk": 1312,
+          "sk": 2560,
+          "sig": 2420,
+          "keygen_ms": 0.06,
+          "keygen_min": 0.057,
+          "keygen_iqr": 0.002,
+          "sign_ms": 0.204,
+          "sign_min": 0.102,
+          "sign_iqr": 0.16,
+          "verify_ms": 0.064,
+          "verify_min": 0.061,
+          "verify_iqr": 0.001,
+          "verify_ok": 1
+        }
+      ]
+    },
+    {
+      "session": 3,
+      "order": [
+        "mldsa65",
+        "sphincs128s",
+        "mldsa44",
+        "sphincs128f",
+        "proto"
+      ],
+      "rows": [
+        {
+          "scheme": "ML-DSA-65",
+          "pk": 1952,
+          "sk": 4032,
+          "sig": 3309,
+          "keygen_ms": 0.118,
+          "keygen_min": 0.115,
+          "keygen_iqr": 0.03,
+          "sign_ms": 0.385,
+          "sign_min": 0.158,
+          "sign_iqr": 0.391,
+          "verify_ms": 0.174,
+          "verify_min": 0.105,
+          "verify_iqr": 0.151,
+          "verify_ok": 1
+        },
+        {
+          "scheme": "SLH-DSA-SHA2-128s (PQClean)",
+          "pk": 32,
+          "sk": 64,
+          "sig": 7856,
+          "keygen_ms": 82.129,
+          "keygen_min": 74.68,
+          "keygen_iqr": 9.388,
+          "sign_ms": 583.978,
+          "sign_min": 559.314,
+          "sign_iqr": 41.944,
+          "verify_ms": 0.503,
+          "verify_min": 0.488,
+          "verify_iqr": 0.01,
+          "verify_ok": 1
+        },
+        {
+          "scheme": "ML-DSA-44",
+          "pk": 1312,
+          "sk": 2560,
+          "sig": 2420,
+          "keygen_ms": 0.06,
+          "keygen_min": 0.059,
+          "keygen_iqr": 0.001,
+          "sign_ms": 0.2,
+          "sign_min": 0.101,
+          "sign_iqr": 0.178,
+          "verify_ms": 0.062,
+          "verify_min": 0.061,
+          "verify_iqr": 0.001,
+          "verify_ok": 1
+        },
+        {
+          "scheme": "SLH-DSA-SHA2-128f (PQClean)",
+          "pk": 32,
+          "sk": 64,
+          "sig": 17088,
+          "keygen_ms": 1.106,
+          "keygen_min": 1.082,
+          "keygen_iqr": 0.039,
+          "sign_ms": 27.132,
+          "sign_min": 26.259,
+          "sign_iqr": 0.628,
+          "verify_ms": 1.548,
+          "verify_min": 1.507,
+          "verify_iqr": 0.072,
+          "verify_ok": 1
+        },
+        {
+          "kind": "lamport",
+          "compact": false,
+          "h": 1,
+          "n": 2,
+          "keygen_ms": 0.586,
+          "keygen_min": 0.568,
+          "keygen_iqr": 0.032,
+          "sign_ms": 0.001,
+          "sign_min": 0.001,
+          "sign_iqr": 0.0,
+          "verify_ms": 0.111,
+          "verify_min": 0.109,
+          "verify_iqr": 0.004,
+          "sig_bytes": 24608,
+          "verify_ok": 1
+        },
+        {
+          "kind": "lamport",
+          "compact": false,
+          "h": 2,
+          "n": 4,
+          "keygen_ms": 1.15,
+          "keygen_min": 1.135,
+          "keygen_iqr": 0.034,
+          "sign_ms": 0.002,
+          "sign_min": 0.001,
+          "sign_iqr": 0.0,
+          "verify_ms": 0.113,
+          "verify_min": 0.11,
+          "verify_iqr": 0.0035,
+          "sig_bytes": 24640,
+          "verify_ok": 1
+        },
+        {
+          "kind": "lamport",
+          "compact": false,
+          "h": 3,
+          "n": 8,
+          "keygen_ms": 2.303,
+          "keygen_min": 2.272,
+          "keygen_iqr": 0.0855,
+          "sign_ms": 0.004,
+          "sign_min": 0.003,
+          "sign_iqr": 0.001,
+          "verify_ms": 0.114,
+          "verify_min": 0.11,
+          "verify_iqr": 0.0065,
+          "sig_bytes": 24672,
+          "verify_ok": 1
+        },
+        {
+          "kind": "lamport",
+          "compact": false,
+          "h": 4,
+          "n": 16,
+          "keygen_ms": 4.671,
+          "keygen_min": 4.582,
+          "keygen_iqr": 0.8645,
+          "sign_ms": 0.007,
+          "sign_min": 0.006,
+          "sign_iqr": 0.0,
+          "verify_ms": 0.112,
+          "verify_min": 0.111,
+          "verify_iqr": 0.0025,
+          "sig_bytes": 24704,
+          "verify_ok": 1
+        },
+        {
+          "kind": "lamport",
+          "compact": false,
+          "h": 5,
+          "n": 32,
+          "keygen_ms": 9.996,
+          "keygen_min": 9.203,
+          "keygen_iqr": 0.9175,
+          "sign_ms": 0.013,
+          "sign_min": 0.013,
+          "sign_iqr": 0.001,
+          "verify_ms": 0.113,
+          "verify_min": 0.111,
+          "verify_iqr": 0.003,
+          "sig_bytes": 24736,
+          "verify_ok": 1
+        },
+        {
+          "kind": "lamport",
+          "compact": false,
+          "h": 6,
+          "n": 64,
+          "keygen_ms": 19.517,
+          "keygen_min": 19.001,
+          "keygen_iqr": 0.711,
+          "sign_ms": 0.028,
+          "sign_min": 0.026,
+          "sign_iqr": 0.001,
+          "verify_ms": 0.113,
+          "verify_min": 0.111,
+          "verify_iqr": 0.004,
+          "sig_bytes": 24768,
+          "verify_ok": 1
+        },
+        {
+          "kind": "lamport",
+          "compact": false,
+          "h": 7,
+          "n": 128,
+          "keygen_ms": 38.951,
+          "keygen_min": 38.157,
+          "keygen_iqr": 0.7525,
+          "sign_ms": 0.055,
+          "sign_min": 0.053,
+          "sign_iqr": 0.0015,
+          "verify_ms": 0.114,
+          "verify_min": 0.112,
+          "verify_iqr": 0.002,
+          "sig_bytes": 24800,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": false,
+          "h": 1,
+          "n": 2,
+          "keygen_ms": 0.523,
+          "keygen_min": 0.514,
+          "keygen_iqr": 0.01,
+          "sign_ms": 0.123,
+          "sign_min": 0.121,
+          "sign_iqr": 0.001,
+          "verify_ms": 0.125,
+          "verify_min": 0.123,
+          "verify_iqr": 0.0055,
+          "sig_bytes": 4320,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": false,
+          "h": 2,
+          "n": 4,
+          "keygen_ms": 1.055,
+          "keygen_min": 1.025,
+          "keygen_iqr": 0.025,
+          "sign_ms": 0.123,
+          "sign_min": 0.12,
+          "sign_iqr": 0.003,
+          "verify_ms": 0.126,
+          "verify_min": 0.124,
+          "verify_iqr": 0.002,
+          "sig_bytes": 4352,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": false,
+          "h": 3,
+          "n": 8,
+          "keygen_ms": 2.107,
+          "keygen_min": 2.077,
+          "keygen_iqr": 0.074,
+          "sign_ms": 0.126,
+          "sign_min": 0.123,
+          "sign_iqr": 0.004,
+          "verify_ms": 0.126,
+          "verify_min": 0.125,
+          "verify_iqr": 0.002,
+          "sig_bytes": 4384,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": false,
+          "h": 4,
+          "n": 16,
+          "keygen_ms": 4.243,
+          "keygen_min": 4.169,
+          "keygen_iqr": 0.591,
+          "sign_ms": 0.129,
+          "sign_min": 0.126,
+          "sign_iqr": 0.003,
+          "verify_ms": 0.131,
+          "verify_min": 0.125,
+          "verify_iqr": 0.0265,
+          "sig_bytes": 4416,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": false,
+          "h": 5,
+          "n": 32,
+          "keygen_ms": 9.051,
+          "keygen_min": 8.384,
+          "keygen_iqr": 0.768,
+          "sign_ms": 0.139,
+          "sign_min": 0.133,
+          "sign_iqr": 0.0105,
+          "verify_ms": 0.127,
+          "verify_min": 0.125,
+          "verify_iqr": 0.004,
+          "sig_bytes": 4448,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": false,
+          "h": 6,
+          "n": 64,
+          "keygen_ms": 17.927,
+          "keygen_min": 17.452,
+          "keygen_iqr": 0.8585,
+          "sign_ms": 0.149,
+          "sign_min": 0.146,
+          "sign_iqr": 0.002,
+          "verify_ms": 0.131,
+          "verify_min": 0.125,
+          "verify_iqr": 0.0075,
+          "sig_bytes": 4480,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": false,
+          "h": 7,
+          "n": 128,
+          "keygen_ms": 35.739,
+          "keygen_min": 35.075,
+          "keygen_iqr": 1.2105,
+          "sign_ms": 0.176,
+          "sign_min": 0.173,
+          "sign_iqr": 0.0055,
+          "verify_ms": 0.129,
+          "verify_min": 0.126,
+          "verify_iqr": 0.0025,
+          "sig_bytes": 4512,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": true,
+          "h": 1,
+          "n": 2,
+          "keygen_ms": 0.522,
+          "keygen_min": 0.517,
+          "keygen_iqr": 0.013,
+          "sign_ms": 0.122,
+          "sign_min": 0.121,
+          "sign_iqr": 0.0035,
+          "verify_ms": 0.244,
+          "verify_min": 0.241,
+          "verify_iqr": 0.0055,
+          "sig_bytes": 2176,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": true,
+          "h": 2,
+          "n": 4,
+          "keygen_ms": 1.057,
+          "keygen_min": 1.034,
+          "keygen_iqr": 0.03,
+          "sign_ms": 0.124,
+          "sign_min": 0.121,
+          "sign_iqr": 0.0025,
+          "verify_ms": 0.25,
+          "verify_min": 0.241,
+          "verify_iqr": 0.0195,
+          "sig_bytes": 2208,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": true,
+          "h": 3,
+          "n": 8,
+          "keygen_ms": 2.12,
+          "keygen_min": 2.072,
+          "keygen_iqr": 0.0625,
+          "sign_ms": 0.13,
+          "sign_min": 0.128,
+          "sign_iqr": 0.0075,
+          "verify_ms": 0.246,
+          "verify_min": 0.242,
+          "verify_iqr": 0.0055,
+          "sig_bytes": 2240,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": true,
+          "h": 4,
+          "n": 16,
+          "keygen_ms": 4.27,
+          "keygen_min": 4.178,
+          "keygen_iqr": 0.5275,
+          "sign_ms": 0.132,
+          "sign_min": 0.127,
+          "sign_iqr": 0.001,
+          "verify_ms": 0.247,
+          "verify_min": 0.242,
+          "verify_iqr": 0.007,
+          "sig_bytes": 2272,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": true,
+          "h": 5,
+          "n": 32,
+          "keygen_ms": 8.9,
+          "keygen_min": 8.403,
+          "keygen_iqr": 0.5705,
+          "sign_ms": 0.247,
+          "sign_min": 0.138,
+          "sign_iqr": 0.171,
+          "verify_ms": 0.261,
+          "verify_min": 0.243,
+          "verify_iqr": 0.0545,
+          "sig_bytes": 2304,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": true,
+          "h": 6,
+          "n": 64,
+          "keygen_ms": 18.255,
+          "keygen_min": 17.272,
+          "keygen_iqr": 0.914,
+          "sign_ms": 0.15,
+          "sign_min": 0.147,
+          "sign_iqr": 0.0045,
+          "verify_ms": 0.251,
+          "verify_min": 0.243,
+          "verify_iqr": 0.0095,
+          "sig_bytes": 2336,
+          "verify_ok": 1
+        },
+        {
+          "kind": "wots",
+          "compact": true,
+          "h": 7,
+          "n": 128,
+          "keygen_ms": 35.307,
+          "keygen_min": 34.785,
+          "keygen_iqr": 0.65,
+          "sign_ms": 0.177,
+          "sign_min": 0.173,
+          "sign_iqr": 0.005,
+          "verify_ms": 0.246,
+          "verify_min": 0.243,
+          "verify_iqr": 0.002,
+          "sig_bytes": 2368,
+          "verify_ok": 1
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "ML-DSA-44": {
+      "keygen_ms": {
+        "session_medians": [
+          0.066,
+          0.06,
+          0.06
+        ],
+        "median": 0.06,
+        "min": 0.06,
+        "max": 0.066,
+        "spread_pct": 10.000000000000009
+      },
+      "sign_ms": {
+        "session_medians": [
+          0.295,
+          0.204,
+          0.2
+        ],
+        "median": 0.204,
+        "min": 0.2,
+        "max": 0.295,
+        "spread_pct": 46.56862745098038
+      },
+      "verify_ms": {
+        "session_medians": [
+          0.066,
+          0.064,
+          0.062
+        ],
+        "median": 0.064,
+        "min": 0.062,
+        "max": 0.066,
+        "spread_pct": 6.250000000000005
+      },
+      "scheme": "ML-DSA-44",
+      "pk": 1312,
+      "sk": 2560,
+      "sig": 2420
+    },
+    "ML-DSA-65": {
+      "keygen_ms": {
+        "session_medians": [
+          0.12,
+          0.115,
+          0.118
+        ],
+        "median": 0.118,
+        "min": 0.115,
+        "max": 0.12,
+        "spread_pct": 4.237288135593213
+      },
+      "sign_ms": {
+        "session_medians": [
+          0.361,
+          0.335,
+          0.385
+        ],
+        "median": 0.361,
+        "min": 0.335,
+        "max": 0.385,
+        "spread_pct": 13.850415512465371
+      },
+      "verify_ms": {
+        "session_medians": [
+          0.106,
+          0.104,
+          0.174
+        ],
+        "median": 0.106,
+        "min": 0.104,
+        "max": 0.174,
+        "spread_pct": 66.0377358490566
+      },
+      "scheme": "ML-DSA-65",
+      "pk": 1952,
+      "sk": 4032,
+      "sig": 3309
+    },
+    "SLH-DSA-SHA2-128f (PQClean)": {
+      "keygen_ms": {
+        "session_medians": [
+          1.139,
+          1.119,
+          1.106
+        ],
+        "median": 1.119,
+        "min": 1.106,
+        "max": 1.139,
+        "spread_pct": 2.949061662198384
+      },
+      "sign_ms": {
+        "session_medians": [
+          27.703,
+          27.905,
+          27.132
+        ],
+        "median": 27.703,
+        "min": 27.132,
+        "max": 27.905,
+        "spread_pct": 2.790311518608092
+      },
+      "verify_ms": {
+        "session_medians": [
+          1.636,
+          1.437,
+          1.548
+        ],
+        "median": 1.548,
+        "min": 1.437,
+        "max": 1.636,
+        "spread_pct": 12.855297157622728
+      },
+      "scheme": "SLH-DSA-SHA2-128f (PQClean)",
+      "pk": 32,
+      "sk": 64,
+      "sig": 17088
+    },
+    "SLH-DSA-SHA2-128s (PQClean)": {
+      "keygen_ms": {
+        "session_medians": [
+          78.016,
+          74.902,
+          82.129
+        ],
+        "median": 78.016,
+        "min": 74.902,
+        "max": 82.129,
+        "spread_pct": 9.263484413453654
+      },
+      "sign_ms": {
+        "session_medians": [
+          661.468,
+          593.73,
+          583.978
+        ],
+        "median": 593.73,
+        "min": 583.978,
+        "max": 661.468,
+        "spread_pct": 13.051386994088224
+      },
+      "verify_ms": {
+        "session_medians": [
+          0.544,
+          0.564,
+          0.503
+        ],
+        "median": 0.544,
+        "min": 0.503,
+        "max": 0.564,
+        "spread_pct": 11.213235294117636
+      },
+      "scheme": "SLH-DSA-SHA2-128s (PQClean)",
+      "pk": 32,
+      "sk": 64,
+      "sig": 7856
+    },
+    "lamport|False|1": {
+      "keygen_ms": {
+        "session_medians": [
+          0.587,
+          0.594,
+          0.586
+        ],
+        "median": 0.587,
+        "min": 0.586,
+        "max": 0.594,
+        "spread_pct": 1.3628620102214664
+      },
+      "sign_ms": {
+        "session_medians": [
+          0.001,
+          0.001,
+          0.001
+        ],
+        "median": 0.001,
+        "min": 0.001,
+        "max": 0.001,
+        "spread_pct": 0.0
+      },
+      "verify_ms": {
+        "session_medians": [
+          0.114,
+          0.11,
+          0.111
+        ],
+        "median": 0.111,
+        "min": 0.11,
+        "max": 0.114,
+        "spread_pct": 3.603603603603607
+      },
+      "kind": "lamport",
+      "compact": false,
+      "h": 1,
+      "sig_bytes": 24608
+    },
+    "lamport|False|2": {
+      "keygen_ms": {
+        "session_medians": [
+          1.197,
+          1.16,
+          1.15
+        ],
+        "median": 1.16,
+        "min": 1.15,
+        "max": 1.197,
+        "spread_pct": 4.051724137931048
+      },
+      "sign_ms": {
+        "session_medians": [
+          0.002,
+          0.002,
+          0.002
+        ],
+        "median": 0.002,
+        "min": 0.002,
+        "max": 0.002,
+        "spread_pct": 0.0
+      },
+      "verify_ms": {
+        "session_medians": [
+          0.114,
+          0.112,
+          0.113
+        ],
+        "median": 0.113,
+        "min": 0.112,
+        "max": 0.114,
+        "spread_pct": 1.7699115044247802
+      },
+      "kind": "lamport",
+      "compact": false,
+      "h": 2,
+      "sig_bytes": 24640
+    },
+    "lamport|False|3": {
+      "keygen_ms": {
+        "session_medians": [
+          2.373,
+          2.331,
+          2.303
+        ],
+        "median": 2.331,
+        "min": 2.303,
+        "max": 2.373,
+        "spread_pct": 3.0030030030030153
+      },
+      "sign_ms": {
+        "session_medians": [
+          0.004,
+          0.004,
+          0.004
+        ],
+        "median": 0.004,
+        "min": 0.004,
+        "max": 0.004,
+        "spread_pct": 0.0
+      },
+      "verify_ms": {
+        "session_medians": [
+          0.115,
+          0.112,
+          0.114
+        ],
+        "median": 0.114,
+        "min": 0.112,
+        "max": 0.115,
+        "spread_pct": 2.6315789473684235
+      },
+      "kind": "lamport",
+      "compact": false,
+      "h": 3,
+      "sig_bytes": 24672
+    },
+    "lamport|False|4": {
+      "keygen_ms": {
+        "session_medians": [
+          4.773,
+          4.701,
+          4.671
+        ],
+        "median": 4.701,
+        "min": 4.671,
+        "max": 4.773,
+        "spread_pct": 2.169751116783651
+      },
+      "sign_ms": {
+        "session_medians": [
+          0.007,
+          0.007,
+          0.007
+        ],
+        "median": 0.007,
+        "min": 0.007,
+        "max": 0.007,
+        "spread_pct": 0.0
+      },
+      "verify_ms": {
+        "session_medians": [
+          0.116,
+          0.113,
+          0.112
+        ],
+        "median": 0.113,
+        "min": 0.112,
+        "max": 0.116,
+        "spread_pct": 3.5398230088495604
+      },
+      "kind": "lamport",
+      "compact": false,
+      "h": 4,
+      "sig_bytes": 24704
+    },
+    "lamport|False|5": {
+      "keygen_ms": {
+        "session_medians": [
+          9.78,
+          9.835,
+          9.996
+        ],
+        "median": 9.835,
+        "min": 9.78,
+        "max": 9.996,
+        "spread_pct": 2.196237925775303
+      },
+      "sign_ms": {
+        "session_medians": [
+          0.014,
+          0.014,
+          0.013
+        ],
+        "median": 0.014,
+        "min": 0.013,
+        "max": 0.014,
+        "spread_pct": 7.1428571428571495
+      },
+      "verify_ms": {
+        "session_medians": [
+          0.115,
+          0.114,
+          0.113
+        ],
+        "median": 0.114,
+        "min": 0.113,
+        "max": 0.115,
+        "spread_pct": 1.7543859649122824
+      },
+      "kind": "lamport",
+      "compact": false,
+      "h": 5,
+      "sig_bytes": 24736
+    },
+    "lamport|False|6": {
+      "keygen_ms": {
+        "session_medians": [
+          21.023,
+          19.684,
+          19.517
+        ],
+        "median": 19.684,
+        "min": 19.517,
+        "max": 21.023,
+        "spread_pct": 7.650883966673441
+      },
+      "sign_ms": {
+        "session_medians": [
+          0.065,
+          0.028,
+          0.028
+        ],
+        "median": 0.028,
+        "min": 0.028,
+        "max": 0.065,
+        "spread_pct": 132.14285714285717
+      },
+      "verify_ms": {
+        "session_medians": [
+          0.138,
+          0.116,
+          0.113
+        ],
+        "median": 0.116,
+        "min": 0.113,
+        "max": 0.138,
+        "spread_pct": 21.551724137931043
+      },
+      "kind": "lamport",
+      "compact": false,
+      "h": 6,
+      "sig_bytes": 24768
+    },
+    "lamport|False|7": {
+      "keygen_ms": {
+        "session_medians": [
+          43.003,
+          39.917,
+          38.951
+        ],
+        "median": 39.917,
+        "min": 38.951,
+        "max": 43.003,
+        "spread_pct": 10.151063456672595
+      },
+      "sign_ms": {
+        "session_medians": [
+          0.055,
+          0.056,
+          0.055
+        ],
+        "median": 0.055,
+        "min": 0.055,
+        "max": 0.056,
+        "spread_pct": 1.81818181818182
+      },
+      "verify_ms": {
+        "session_medians": [
+          0.16,
+          0.115,
+          0.114
+        ],
+        "median": 0.115,
+        "min": 0.114,
+        "max": 0.16,
+        "spread_pct": 40.0
+      },
+      "kind": "lamport",
+      "compact": false,
+      "h": 7,
+      "sig_bytes": 24800
+    },
+    "wots|False|1": {
+      "keygen_ms": {
+        "session_medians": [
+          0.537,
+          0.533,
+          0.523
+        ],
+        "median": 0.533,
+        "min": 0.523,
+        "max": 0.537,
+        "spread_pct": 2.626641651031897
+      },
+      "sign_ms": {
+        "session_medians": [
+          0.125,
+          0.125,
+          0.123
+        ],
+        "median": 0.125,
+        "min": 0.123,
+        "max": 0.125,
+        "spread_pct": 1.6000000000000014
+      },
+      "verify_ms": {
+        "session_medians": [
+          0.129,
+          0.13,
+          0.125
+        ],
+        "median": 0.129,
+        "min": 0.125,
+        "max": 0.13,
+        "spread_pct": 3.8759689922480653
+      },
+      "kind": "wots",
+      "compact": false,
+      "h": 1,
+      "sig_bytes": 4320
+    },
+    "wots|False|2": {
+      "keygen_ms": {
+        "session_medians": [
+          1.059,
+          1.078,
+          1.055
+        ],
+        "median": 1.059,
+        "min": 1.055,
+        "max": 1.078,
+        "spread_pct": 2.171860245514649
+      },
+      "sign_ms": {
+        "session_medians": [
+          0.123,
+          0.125,
+          0.123
+        ],
+        "median": 0.123,
+        "min": 0.123,
+        "max": 0.125,
+        "spread_pct": 1.6260162601626031
+      },
+      "verify_ms": {
+        "session_medians": [
+          0.127,
+          0.13,
+          0.126
+        ],
+        "median": 0.127,
+        "min": 0.126,
+        "max": 0.13,
+        "spread_pct": 3.1496062992126013
+      },
+      "kind": "wots",
+      "compact": false,
+      "h": 2,
+      "sig_bytes": 4352
+    },
+    "wots|False|3": {
+      "keygen_ms": {
+        "session_medians": [
+          2.149,
+          2.131,
+          2.107
+        ],
+        "median": 2.131,
+        "min": 2.107,
+        "max": 2.149,
+        "spread_pct": 1.9709056780853975
+      },
+      "sign_ms": {
+        "session_medians": [
+          0.128,
+          0.127,
+          0.126
+        ],
+        "median": 0.127,
+        "min": 0.126,
+        "max": 0.128,
+        "spread_pct": 1.5748031496063006
+      },
+      "verify_ms": {
+        "session_medians": [
+          0.127,
+          0.128,
+          0.126
+        ],
+        "median": 0.127,
+        "min": 0.126,
+        "max": 0.128,
+        "spread_pct": 1.5748031496063006
+      },
+      "kind": "wots",
+      "compact": false,
+      "h": 3,
+      "sig_bytes": 4384
+    },
+    "wots|False|4": {
+      "keygen_ms": {
+        "session_medians": [
+          4.253,
+          4.319,
+          4.243
+        ],
+        "median": 4.253,
+        "min": 4.243,
+        "max": 4.319,
+        "spread_pct": 1.786973900775914
+      },
+      "sign_ms": {
+        "session_medians": [
+          0.128,
+          0.13,
+          0.129
+        ],
+        "median": 0.129,
+        "min": 0.128,
+        "max": 0.13,
+        "spread_pct": 1.5503875968992262
+      },
+      "verify_ms": {
+        "session_medians": [
+          0.126,
+          0.127,
+          0.131
+        ],
+        "median": 0.127,
+        "min": 0.126,
+        "max": 0.131,
+        "spread_pct": 3.9370078740157513
+      },
+      "kind": "wots",
+      "compact": false,
+      "h": 4,
+      "sig_bytes": 4416
+    },
+    "wots|False|5": {
+      "keygen_ms": {
+        "session_medians": [
+          9.914,
+          9.094,
+          9.051
+        ],
+        "median": 9.094,
+        "min": 9.051,
+        "max": 9.914,
+        "spread_pct": 9.48977347701781
+      },
+      "sign_ms": {
+        "session_medians": [
+          0.136,
+          0.136,
+          0.139
+        ],
+        "median": 0.136,
+        "min": 0.136,
+        "max": 0.139,
+        "spread_pct": 2.2058823529411784
+      },
+      "verify_ms": {
+        "session_medians": [
+          0.128,
+          0.13,
+          0.127
+        ],
+        "median": 0.128,
+        "min": 0.127,
+        "max": 0.13,
+        "spread_pct": 2.343750000000002
+      },
+      "kind": "wots",
+      "compact": false,
+      "h": 5,
+      "sig_bytes": 4448
+    },
+    "wots|False|6": {
+      "keygen_ms": {
+        "session_medians": [
+          17.669,
+          17.686,
+          17.927
+        ],
+        "median": 17.686,
+        "min": 17.669,
+        "max": 17.927,
+        "spread_pct": 1.4587809566889014
+      },
+      "sign_ms": {
+        "session_medians": [
+          0.149,
+          0.149,
+          0.149
+        ],
+        "median": 0.149,
+        "min": 0.149,
+        "max": 0.149,
+        "spread_pct": 0.0
+      },
+      "verify_ms": {
+        "session_medians": [
+          0.128,
+          0.128,
+          0.131
+        ],
+        "median": 0.128,
+        "min": 0.128,
+        "max": 0.131,
+        "spread_pct": 2.343750000000002
+      },
+      "kind": "wots",
+      "compact": false,
+      "h": 6,
+      "sig_bytes": 4480
+    },
+    "wots|False|7": {
+      "keygen_ms": {
+        "session_medians": [
+          35.872,
+          35.425,
+          35.739
+        ],
+        "median": 35.739,
+        "min": 35.425,
+        "max": 35.872,
+        "spread_pct": 1.2507344917317293
+      },
+      "sign_ms": {
+        "session_medians": [
+          0.247,
+          0.186,
+          0.176
+        ],
+        "median": 0.186,
+        "min": 0.176,
+        "max": 0.247,
+        "spread_pct": 38.172043010752695
+      },
+      "verify_ms": {
+        "session_medians": [
+          0.155,
+          0.131,
+          0.129
+        ],
+        "median": 0.131,
+        "min": 0.129,
+        "max": 0.155,
+        "spread_pct": 19.847328244274806
+      },
+      "kind": "wots",
+      "compact": false,
+      "h": 7,
+      "sig_bytes": 4512
+    },
+    "wots|True|1": {
+      "keygen_ms": {
+        "session_medians": [
+          0.754,
+          0.536,
+          0.522
+        ],
+        "median": 0.536,
+        "min": 0.522,
+        "max": 0.754,
+        "spread_pct": 43.28358208955223
+      },
+      "sign_ms": {
+        "session_medians": [
+          0.131,
+          0.125,
+          0.122
+        ],
+        "median": 0.125,
+        "min": 0.122,
+        "max": 0.131,
+        "spread_pct": 7.200000000000006
+      },
+      "verify_ms": {
+        "session_medians": [
+          0.591,
+          0.245,
+          0.244
+        ],
+        "median": 0.245,
+        "min": 0.244,
+        "max": 0.591,
+        "spread_pct": 141.6326530612245
+      },
+      "kind": "wots",
+      "compact": true,
+      "h": 1,
+      "sig_bytes": 2176
+    },
+    "wots|True|2": {
+      "keygen_ms": {
+        "session_medians": [
+          3.495,
+          1.049,
+          1.057
+        ],
+        "median": 1.057,
+        "min": 1.049,
+        "max": 3.495,
+        "spread_pct": 231.40964995269636
+      },
+      "sign_ms": {
+        "session_medians": [
+          0.127,
+          0.128,
+          0.124
+        ],
+        "median": 0.127,
+        "min": 0.124,
+        "max": 0.128,
+        "spread_pct": 3.1496062992126013
+      },
+      "verify_ms": {
+        "session_medians": [
+          0.251,
+          0.245,
+          0.25
+        ],
+        "median": 0.25,
+        "min": 0.245,
+        "max": 0.251,
+        "spread_pct": 2.400000000000002
+      },
+      "kind": "wots",
+      "compact": true,
+      "h": 2,
+      "sig_bytes": 2208
+    },
+    "wots|True|3": {
+      "keygen_ms": {
+        "session_medians": [
+          2.999,
+          2.138,
+          2.12
+        ],
+        "median": 2.138,
+        "min": 2.12,
+        "max": 2.999,
+        "spread_pct": 41.11318989710009
+      },
+      "sign_ms": {
+        "session_medians": [
+          0.184,
+          0.125,
+          0.13
+        ],
+        "median": 0.13,
+        "min": 0.125,
+        "max": 0.184,
+        "spread_pct": 45.38461538461538
+      },
+      "verify_ms": {
+        "session_medians": [
+          0.53,
+          0.244,
+          0.246
+        ],
+        "median": 0.246,
+        "min": 0.244,
+        "max": 0.53,
+        "spread_pct": 116.26016260162604
+      },
+      "kind": "wots",
+      "compact": true,
+      "h": 3,
+      "sig_bytes": 2240
+    },
+    "wots|True|4": {
+      "keygen_ms": {
+        "session_medians": [
+          4.853,
+          4.289,
+          4.27
+        ],
+        "median": 4.289,
+        "min": 4.27,
+        "max": 4.853,
+        "spread_pct": 13.592912100722785
+      },
+      "sign_ms": {
+        "session_medians": [
+          0.129,
+          0.129,
+          0.132
+        ],
+        "median": 0.129,
+        "min": 0.129,
+        "max": 0.132,
+        "spread_pct": 2.325581395348839
+      },
+      "verify_ms": {
+        "session_medians": [
+          0.257,
+          0.245,
+          0.247
+        ],
+        "median": 0.247,
+        "min": 0.245,
+        "max": 0.257,
+        "spread_pct": 4.8582995951417045
+      },
+      "kind": "wots",
+      "compact": true,
+      "h": 4,
+      "sig_bytes": 2272
+    },
+    "wots|True|5": {
+      "keygen_ms": {
+        "session_medians": [
+          9.149,
+          9.096,
+          8.9
+        ],
+        "median": 9.096,
+        "min": 8.9,
+        "max": 9.149,
+        "spread_pct": 2.7374670184696437
+      },
+      "sign_ms": {
+        "session_medians": [
+          0.153,
+          0.139,
+          0.247
+        ],
+        "median": 0.153,
+        "min": 0.139,
+        "max": 0.247,
+        "spread_pct": 70.58823529411764
+      },
+      "verify_ms": {
+        "session_medians": [
+          0.252,
+          0.251,
+          0.261
+        ],
+        "median": 0.252,
+        "min": 0.251,
+        "max": 0.261,
+        "spread_pct": 3.9682539682539715
+      },
+      "kind": "wots",
+      "compact": true,
+      "h": 5,
+      "sig_bytes": 2304
+    },
+    "wots|True|6": {
+      "keygen_ms": {
+        "session_medians": [
+          21.128,
+          17.526,
+          18.255
+        ],
+        "median": 18.255,
+        "min": 17.526,
+        "max": 21.128,
+        "spread_pct": 19.731580388934542
+      },
+      "sign_ms": {
+        "session_medians": [
+          0.153,
+          0.149,
+          0.15
+        ],
+        "median": 0.15,
+        "min": 0.149,
+        "max": 0.153,
+        "spread_pct": 2.666666666666669
+      },
+      "verify_ms": {
+        "session_medians": [
+          0.276,
+          0.247,
+          0.251
+        ],
+        "median": 0.251,
+        "min": 0.247,
+        "max": 0.276,
+        "spread_pct": 11.55378486055778
+      },
+      "kind": "wots",
+      "compact": true,
+      "h": 6,
+      "sig_bytes": 2336
+    },
+    "wots|True|7": {
+      "keygen_ms": {
+        "session_medians": [
+          36.04,
+          35.26,
+          35.307
+        ],
+        "median": 35.307,
+        "min": 35.26,
+        "max": 36.04,
+        "spread_pct": 2.2091936443198263
+      },
+      "sign_ms": {
+        "session_medians": [
+          0.181,
+          0.176,
+          0.177
+        ],
+        "median": 0.177,
+        "min": 0.176,
+        "max": 0.181,
+        "spread_pct": 2.8248587570621497
+      },
+      "verify_ms": {
+        "session_medians": [
+          0.285,
+          0.246,
+          0.246
+        ],
+        "median": 0.246,
+        "min": 0.246,
+        "max": 0.285,
+        "spread_pct": 15.853658536585357
+      },
+      "kind": "wots",
+      "compact": true,
+      "h": 7,
+      "sig_bytes": 2368
+    }
+  }
+}

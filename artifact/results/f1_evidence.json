@@ -1,0 +1,153 @@
+{
+  "title": "F1 WOTS+ checksum defect reproduction",
+  "source_revision": "e896002 (original) / working-tree fix (fixed)",
+  "parameter_set": {
+    "n": 32,
+    "w": 16,
+    "len1": 64,
+    "len2": 3,
+    "len": 67
+  },
+  "environment": {
+    "python": "3.14.3",
+    "host": "macOS 15.7.7 / Apple M1 (per environment.txt)"
+  },
+  "attack_scope": "Original checksum digits are constant [0,0,0]; every signature leaks the three checksum-chain secrets (sk[64],sk[65],sk[66]) in cleartext. This is a one-time-signature secret leak, NOT a universal forgery.",
+  "cases": [
+    {
+      "case_id": "F1-checksum-001",
+      "source_revision": "e896002 (original) / working-tree fix (fixed)",
+      "parameter_set": {
+        "n": 32,
+        "w": 16,
+        "len1": 64,
+        "len2": 3,
+        "len": 67
+      },
+      "input_digest": "8c3433c393d00071",
+      "expected_checksum_digits": [
+        1,
+        12,
+        7
+      ],
+      "observed_checksum_digits_original": [
+        0,
+        0,
+        0
+      ],
+      "observed_checksum_digits_fixed": [
+        1,
+        12,
+        7
+      ],
+      "original_verifier_accepts": true,
+      "fixed_verifier_accepts": true,
+      "independent_verifier_accepts_original": false,
+      "independent_verifier_accepts_fixed": true
+    },
+    {
+      "case_id": "F1-checksum-002",
+      "source_revision": "e896002 (original) / working-tree fix (fixed)",
+      "parameter_set": {
+        "n": 32,
+        "w": 16,
+        "len1": 64,
+        "len2": 3,
+        "len": 67
+      },
+      "input_digest": "b2f9d0dee5aa0ee4",
+      "expected_checksum_digits": [
+        1,
+        14,
+        12
+      ],
+      "observed_checksum_digits_original": [
+        0,
+        0,
+        0
+      ],
+      "observed_checksum_digits_fixed": [
+        1,
+        14,
+        12
+      ],
+      "original_verifier_accepts": true,
+      "fixed_verifier_accepts": true,
+      "independent_verifier_accepts_original": false,
+      "independent_verifier_accepts_fixed": true
+    },
+    {
+      "case_id": "F1-checksum-003",
+      "source_revision": "e896002 (original) / working-tree fix (fixed)",
+      "parameter_set": {
+        "n": 32,
+        "w": 16,
+        "len1": 64,
+        "len2": 3,
+        "len": 67
+      },
+      "input_digest": "650c4b03c60e9a0d",
+      "expected_checksum_digits": [
+        1,
+        12,
+        8
+      ],
+      "observed_checksum_digits_original": [
+        0,
+        0,
+        0
+      ],
+      "observed_checksum_digits_fixed": [
+        1,
+        12,
+        8
+      ],
+      "original_verifier_accepts": true,
+      "fixed_verifier_accepts": true,
+      "independent_verifier_accepts_original": false,
+      "independent_verifier_accepts_fixed": true
+    },
+    {
+      "case_id": "F1-checksum-004",
+      "source_revision": "e896002 (original) / working-tree fix (fixed)",
+      "parameter_set": {
+        "n": 32,
+        "w": 16,
+        "len1": 64,
+        "len2": 3,
+        "len": 67
+      },
+      "input_digest": "c5c11f9ebe4101b6",
+      "expected_checksum_digits": [
+        1,
+        15,
+        4
+      ],
+      "observed_checksum_digits_original": [
+        0,
+        0,
+        0
+      ],
+      "observed_checksum_digits_fixed": [
+        1,
+        15,
+        4
+      ],
+      "original_verifier_accepts": true,
+      "fixed_verifier_accepts": true,
+      "independent_verifier_accepts_original": false,
+      "independent_verifier_accepts_fixed": true
+    }
+  ],
+  "summary": {
+    "n_cases": 4,
+    "original_all_constant_000": true,
+    "fixed_never_constant_000": true,
+    "original_all_secrets_leaked": true,
+    "fixed_no_secrets_leaked": true,
+    "original_verifier_accepts_all": true,
+    "fixed_verifier_accepts_all": true,
+    "independent_rejects_original": true,
+    "independent_accepts_fixed": true
+  }
+}

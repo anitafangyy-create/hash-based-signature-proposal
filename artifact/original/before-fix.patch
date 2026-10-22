@@ -1,0 +1,199 @@
+diff --git a/hbs_signature.py b/hbs_signature.py
+index 92dfa35..09ed383 100644
+--- a/hbs_signature.py
++++ b/hbs_signature.py
+@@ -150,6 +150,10 @@ class MerkleSignatureScheme:
+         self.ots_keys: List[LamportKeyPair] = [
+             LamportKeyPair.generate() for _ in range(self.n_leaves)
+         ]
++        # State management: track which one-time keys have been consumed.
++        # Reusing a leaf index leaks the one-time secret — a catastrophic
++        # failure for any stateful hash-based signature.
++        self.used: set = set()
+         # leaf hashes: H(serialize_pk(ots_pk))
+         self.leaf_hashes: List[bytes] = [
+             self._hash_leaf_pk(kp.pk) for kp in self.ots_keys
+@@ -195,7 +199,12 @@ class MerkleSignatureScheme:
+                             leaf_pk_digests=self.leaf_hashes)
+ 
+     def sign(self, msg: bytes, leaf_index: int) -> MSSSignature:
+-        assert 0 <= leaf_index < self.n_leaves, "leaf already used / out of range"
++        assert 0 <= leaf_index < self.n_leaves, "leaf index out of range"
++        if leaf_index in self.used:
++            raise ValueError(
++                f"OTS key at leaf {leaf_index} already used; reusing a "
++                f"one-time key would leak the secret (stateful HBS).")
++        self.used.add(leaf_index)
+         kp = self.ots_keys[leaf_index]
+         ots_sig = kp.sign(msg)
+         path = self.auth_path(leaf_index)
+@@ -233,6 +242,11 @@ def sizes_for_height(height: int) -> dict:
+     pk_mss = HASH_LEN
+     # MSS signature = Lamport sig (8192) + Lamport pk (16384)
+     #                 + auth path (height * 32)
++    # NOTE: compact mode (rebuilding the OTS public key from the signature)
++    # is NOT applicable to raw Lamport, because the leaf commits to the full
++    # OTS public key H(pk[0]||pk[1]); a Lamport signature reveals only the
++    # preimages for the actual bit values, so the other half is not
++    # recoverable. Compact mode is applicable to WOTS+, see experiment_v2.py.
+     sig_mss = (LamportKeyPair.sig_size_bytes()
+                + LamportKeyPair.pk_size_bytes()
+                + height * HASH_LEN)
+@@ -267,13 +281,43 @@ def _selftest():
+     for i in range(mss.n_leaves):
+         s = mss.sign(f"message #{i}".encode(), i)
+         assert MerkleSignatureScheme.verify(f"message #{i}".encode(), s, root)
+-    # tamper
+-    bad = mss.sign(b"tampered", 0)
++    print(f"[ok] MSS round-trip, height=4, {mss.n_leaves} leaves")
++
++    # tamper on a FRESH instance (re-signing a used leaf is forbidden)
++    mss2 = MerkleSignatureScheme(height=1)
++    root2 = mss2.public_key().root
++    bad = mss2.sign(b"tampered", 0)
+     bad.ots_sig[0] = bytes([bad.ots_sig[0][0] ^ 1]) + bad.ots_sig[0][1:]
+-    assert not MerkleSignatureScheme.verify(b"tampered", bad, root), \
++    assert not MerkleSignatureScheme.verify(b"tampered", bad, root2), \
+         "tampered signature accepted"
+-    print(f"[ok] MSS round-trip, height=4, {mss.n_leaves} leaves, "
+-          f"tamper rejected")
++    # one-time-use enforcement
++    try:
++        mss2.sign(b"reuse", 0)
++        raise AssertionError("reuse of a one-time key was NOT prevented")
++    except ValueError:
++        pass
++    print(f"[ok] MSS tamper rejected; one-time-key reuse prevented")
++
++    # negative: wrong authentication path
++    bad_path = mss2.auth_path(0)
++    bad_path[0] = bytes([bad_path[0][0] ^ 1]) + bad_path[0][1:]
++    wrong_sig = MSSSignature(ots_sig=bad.ots_sig, ots_pk=bad.ots_pk,
++                             auth_path=bad_path, leaf_index=0)
++    assert not MerkleSignatureScheme.verify(b"tampered", wrong_sig, root2), \
++        "wrong auth path accepted"
++    # negative: malformed (wrong-length) OTS signature
++    malformed = MSSSignature(ots_sig=bad.ots_sig[:10], ots_pk=bad.ots_pk,
++                             auth_path=bad.auth_path, leaf_index=0)
++    assert not MerkleSignatureScheme.verify(b"tampered", malformed, root2), \
++        "malformed signature accepted"
++    # negative: out-of-range leaf index
++    try:
++        mss2.sign(b"oob", 99)
++        raise AssertionError("out-of-range index not rejected")
++    except Exception:
++        pass
++    print(f"[ok] MSS negative tests: wrong auth path / malformed / OOB index rejected")
++
+     print("=== self-test passed ===\n")
+ 
+ 
+diff --git a/wots.py b/wots.py
+index 1df65ff..b28481e 100644
+--- a/wots.py
++++ b/wots.py
+@@ -20,8 +20,12 @@ Reference:
+       Algorithm 6 (wots_sign), Algorithm 7 (wots_pkFromSig).
+     * https://github.com/sphincs/sphincsplus
+ 
+-Security: existential unforgeability under chosen-message attacks in the
+-random oracle model, assuming the hash is second-preimage resistant.
++Security note: the *structure* follows WOTS+ (FIPS 205), but this prototype
++omits the standard keyed function and address separation, so it does NOT inherit
++FIPS 205's EU-CMA proof. No security level is claimed. The checksum encoding
++must be implemented exactly as ``wots_checksum`` (see that function's note); an
++earlier draft used ``base_w(c.to_bytes(32,'big'), LEN2)``, which silently
++produced the constant ``[0,0,0]`` and defeated the checksum — fixed 2026-10-19.
+ """
+ 
+ from __future__ import annotations
+@@ -46,7 +50,10 @@ LEN = LEN1 + LEN2                              # = 67
+ def base_w(data: bytes, out_len: int) -> list[int]:
+     """Convert a byte string to a list of base-W digits (each 0..W-1).
+ 
+-    Uses LOG_W bits per digit (LSB-first within each byte)."""
++    Processes the input big-endian and, within the accumulated window,
++    takes LOG_W-bit digits most-significant-nibble first. Correct for
++    fixed-length inputs whose bit length is an exact multiple of LOG_W
++    (e.g. a 32-byte digest -> 64 digits)."""
+     digits = []
+     in_pos = 0
+     in_bits = 0
+@@ -62,6 +69,26 @@ def base_w(data: bytes, out_len: int) -> list[int]:
+     return digits
+ 
+ 
++def wots_checksum(c: int) -> list[int]:
++    """Encode the WOTS+ checksum ``c`` (0 <= c <= 960 for w=16, len1=64) as
++    ``LEN2`` = 3 base-W digits, most-significant digit first.
++
++    IMPORTANT: this is the correct integer base-W decomposition. It must NOT
++    be produced via ``base_w(c.to_bytes(32, 'big'), LEN2)``: because
++    ``c <= 960`` fits in two bytes, the 32-byte big-endian representation is
++    zero-padded, and ``base_w`` would read those leading zero nibbles and
++    always return ``[0, 0, 0]`` — a defect that silently defeats the WOTS+
++    checksum and exposes the three checksum-chain secrets. See §3.2.1 of the
++    paper and the 2026-10-19 fix note."""
++    digits = []
++    cc = c
++    for _ in range(LEN2):
++        digits.append(cc % W)
++        cc //= W
++    digits.reverse()
++    return digits
++
++
+ def chain(x: bytes, start: int, steps: int) -> bytes:
+     """Apply the hash function `steps` times, starting from offset `start`.
+ 
+@@ -92,7 +119,7 @@ class WOTSKeyPair:
+         digest = H_message(msg)
+         msg_digits = base_w(digest, LEN1)
+         checksum = sum(W - 1 - d for d in msg_digits)
+-        checksum_digits = base_w(checksum.to_bytes(N, "big"), LEN2)
++        checksum_digits = wots_checksum(checksum)
+         digits = msg_digits + checksum_digits
+         assert len(digits) == LEN
+         return [chain(self.sk[i], 0, digits[i]) for i in range(LEN)]
+@@ -104,7 +131,7 @@ class WOTSKeyPair:
+         digest = H_message(msg)
+         msg_digits = base_w(digest, LEN1)
+         checksum = sum(W - 1 - d for d in msg_digits)
+-        checksum_digits = base_w(checksum.to_bytes(N, "big"), LEN2)
++        checksum_digits = wots_checksum(checksum)
+         digits = msg_digits + checksum_digits
+         for i in range(LEN):
+             recomputed = chain(sig[i], digits[i], W - 1 - digits[i])
+@@ -147,9 +174,32 @@ if __name__ == "__main__":
+         "wrong message accepted"
+     print("[ok] wrong-message rejection")
+ 
++    # malformed input (wrong-length signature / public key)
++    assert not WOTSKeyPair.verify(msg, sig[:10], kp.pk), \
++        "malformed signature accepted"
++    assert not WOTSKeyPair.verify(msg, sig, kp.pk[:10]), \
++        "malformed public key accepted"
++    print("[ok] malformed-input rejection")
++
+     # sanity on base_w
+     digits = base_w(b"\xff\x00", 4)
+     assert digits == [15, 15, 0, 0], f"base_w got {digits}"
+     print("[ok] base_w sanity: \\xff\\x00 ->", digits)
+ 
++    # checksum encoding boundary tests (the bug was: base_w(c.to_bytes(32,'big'),3))
++    assert wots_checksum(0) == [0, 0, 0], wots_checksum(0)
++    assert wots_checksum(1) == [0, 0, 1], wots_checksum(1)
++    assert wots_checksum(15) == [0, 0, 15], wots_checksum(15)
++    assert wots_checksum(16) == [0, 1, 0], wots_checksum(16)
++    assert wots_checksum(960) == [3, 12, 0], wots_checksum(960)
++    print("[ok] wots_checksum boundary: 0,1,15,16,960 ->",
++          wots_checksum(0), wots_checksum(1), wots_checksum(15),
++          wots_checksum(16), wots_checksum(960))
++
++    # confirm sign/verify stay consistent across varied messages
++    for m in [b"", b"a", b"hello world", b"\x00" * 31, os.urandom(50)]:
++        s = kp.sign(m)
++        assert WOTSKeyPair.verify(m, s, kp.pk), f"verify failed for {m!r}"
++    print("[ok] checksum-consistent round-trip across varied messages")
++
+     print("=== WOTS+ self-test passed ===")

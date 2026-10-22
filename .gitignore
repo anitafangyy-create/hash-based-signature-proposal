@@ -3,3 +3,5 @@ __pycache__/
 *.pyc
 *.pyo
 wots_bench
+
+native_bench/_build/

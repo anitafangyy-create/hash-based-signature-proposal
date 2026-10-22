@@ -4,10 +4,10 @@ import base64
 from pathlib import Path
 import re
 
-OUT = Path(__file__).resolve().parents[1]
+OUT = Path(__file__).resolve().parent
 
-# Read markdown
-md = (OUT / "paper" / "paper.md").read_text()
+# Read markdown (flat layout: paper.md lives next to this script)
+md = (OUT / "paper.md").read_text()
 
 # --- Convert markdown to HTML (simple, sufficient for this paper) ---
 # We use a minimal hand-rolled converter to avoid python-markdown dependency.
@@ -67,7 +67,7 @@ def md_to_html(text: str) -> str:
             m = re.match(r"!\[(.*?)\]\((.*?)\)", line)
             if m:
                 alt, path = m.group(1), m.group(2)
-                img_path = OUT / "paper" / path
+                img_path = OUT / path
                 if img_path.exists():
                     b64 = base64.b64encode(img_path.read_bytes()).decode()
                     out.append(
@@ -102,7 +102,8 @@ html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>A Compact Hash-Based Post-Quantum Signature Scheme</title>
+<title>An Implementation Audit of a Lamport-WOTS+-Merkle Post-Quantum Signature Prototype</title>
+<meta name="description" content="A reproducible implementation audit of a Lamport-WOTS+-Merkle post-quantum signature prototype: a reproduced checksum-encoding defect, OTS-public-key reconstruction, and a native C comparison against NIST standards.">
 <style>
   :root {{
     --text: #1a1a1a;
@@ -194,5 +195,5 @@ html = f"""<!DOCTYPE html>
 </html>
 """
 
-(OUT / "paper" / "paper.html").write_text(html)
-print(f"[written] {OUT/'paper'/'paper.html'} ({len(html)/1024:.0f} KB)")
+(OUT / "paper.html").write_text(html)
+print(f"[written] {OUT/'paper.html'} ({len(html)/1024:.0f} KB)")
