@@ -6,7 +6,7 @@ Python (actual): Python 3.14.7 (cpython; the interpreter used for experiment_v2.
 Python (paper claims): CPython 3.14.7 (matches actual)
 C compiler: Apple clang version 17.0.0 (clang-1700.0.13.5)
 Git HEAD: 25eaefa281e327a092f88f73383306cb4e3f7a05 (post-GitHub-tidying; supersedes earlier review commits)
-Git state: unified MSS-LEAF domain-separation label in experiment_v2.py + native_bench/bench_proto.c; uniform 3-iteration warm-up in experiments/benchmark.py; corrected fig6 XMSS/LMS sizes in make_charts_v2.py; §3.3.2 deployment-API scope disclosure; [17] Merkle CRYPTO'87 DOI. See before-fix.patch for the F1 crypto fixes, and docs/review/pre_submission_review_2026-10-22.md for the full review record.
+Git state: unified MSS-LEAF domain-separation label in experiment_v2.py + native_bench/bench_proto.c; uniform 3-iteration warm-up in experiments/benchmark.py; corrected fig6 XMSS/LMS sizes in make_charts_v2.py; §3.3.2 deployment-API scope disclosure; [17] Merkle CRYPTO'87 DOI. See before-fix.patch for the F1 crypto fixes; the full review record moved with the manuscript to ../hash-based-signature-paper/docs/review/ (pre_submission_review_2026-10-22.md).
 PQClean commit: 0586a824fc0d49df0b6b6e9179d8d15d06d0974f (short 0586a82), 2026-08-04
 PQClean resolved: yes, short hash parsed locally; native_bench/_build/PQClean HEAD matches
 Crypto deps: Python stdlib only (hashlib.sha256, os.urandom)
@@ -26,10 +26,14 @@ results/checksum_rfc_audit.json           # exhaustive c in [0,960] per-value au
 
 --- Round-7: GitHub release tidying ---
 README.md rewritten for the audited manuscript; superseded early-stage files moved to legacy/;
-review records moved to docs/review/; .workbuddy/ purged from history and ignored.
+.workbuddy/ purged from history and ignored.
+
+--- Round-8: manuscript split ---
+paper.md / paper.html / render_html.py and the review record moved to the sibling directory
+../hash-based-signature-paper/ (docs/review/); this repository now holds only code, data, and artifacts.
+File digests remain pinned in the manuscript's Appendix C (paths relative to this repository).
 
 --- Round-5/6 additions (external review fix pass) ---
-docs/review/pre_submission_review_2026-10-22.md         # external-review report (7 P1 + 5 P2; fixes tracked)
 tests/                                      # 118-test regression suite (7 files)
 state_demo/                                 # durable-state fault-injection demo (8/8 tests)
 native_results_sessions.json                # 3-session native benchmark (rotated order, 12s cooldown)

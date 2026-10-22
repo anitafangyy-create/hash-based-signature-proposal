@@ -1,15 +1,17 @@
 # An Implementation Audit of a Lamport–WOTS+–Merkle Post-Quantum Signature Prototype
 
-Companion repository for the manuscript
+Code, experiments, and reproducible evidence for the manuscript
 
 > **An Implementation Audit of a Lamport–WOTS+–Merkle Post-Quantum Signature
 > Prototype: Three Findings and a Comparison Against NIST Standards**
 
-This repository contains the full, audited research prototype and all
-reproducible evidence behind the paper: a Python implementation of a stateful
+This repository contains the audited research prototype and all reproducible
+evidence behind the paper: a Python implementation of a stateful
 Lamport / WOTS+–Merkle hash-based signature scheme, an independent verifier,
 known-answer vectors, negative and fault-injection tests, Python and native C
-benchmarks, and the complete review-fix record.
+benchmarks, and the fix record. **The manuscript (`paper.md` / `paper.html`),
+the review reports, and the HTML renderer live in the sibling repository
+`hash-based-signature-paper/`** (next to this directory).
 
 **Honest positioning (same as the paper):** this is an *implementation audit*,
 not a new signature construction. The prototype is **not** FIPS 205 / RFC 8391
@@ -28,7 +30,6 @@ benchmarks are single-host, implementation-specific measurements.
 
 | Path | Purpose |
 |---|---|
-| `paper.md` / `paper.html` | The manuscript (final audited version) |
 | `wots.py` | WOTS+-inspired one-time signature (with checksum boundary tests and RFC 8391 equivalence check) |
 | `hbs_signature.py` | Lamport + Merkle scheme; deployment-API class is Lamport-only (disclosed in §3.3.2) |
 | `ref_verify.py` | Independent verifier (rebuilds the OTS public key from the signature) |
@@ -43,8 +44,11 @@ benchmarks are single-host, implementation-specific measurements.
 | `native_bench/` | Native C harness + PQClean integration (build output excluded) |
 | `vectors/` | KAT vectors + provenance manifest |
 | `artifact/` | Reproducibility package (original defect files, before-fix patch, README, environment) |
-| `docs/review/` | Review reports and verification record |
 | `legacy/` | Superseded early-stage experiment files (kept for traceability) |
+
+The manuscript, review reports, and `render_html.py` are in the sibling
+repository `../hash-based-signature-paper/` (subdirectory `docs/review/` for
+the review record).
 
 ## Reproduce
 
@@ -86,8 +90,9 @@ cd native_bench && ./build.sh   # clones PQClean @ 0586a82, builds, writes nativ
 - **KAT anchors** — `kat_wots.json` (sha16 `ee98e45bce997e59`) and
   `vectors/kat.json`; provenance manifest in `vectors/manifest.json`.
 - **Reproducibility** — `artifact/` (original defect files, before-fix patch,
-  environment record), `docs/review/` (full review reports with fix status),
-  file digests pinned in paper Appendix C.
+  environment record) and the review record in
+  `../hash-based-signature-paper/docs/review/`; file digests pinned in the
+  manuscript's Appendix C (paths relative to this repository).
 
 ## License
 

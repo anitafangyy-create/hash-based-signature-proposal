@@ -55,7 +55,7 @@ def _sha256(path: Path) -> str:
 def main():
     files = [
         "wots.py", "hbs_signature.py", "experiment_v2.py", "ref_verify.py",
-        "paper.md", "kat_wots.json",
+        "kat_wots.json",
         "native_bench/bench_proto.c", "native_bench/bench_std.c",
         "native_bench/build.sh",
         "experiments/audit_checksum_rfc.py", "results/checksum_rfc_audit.json",
