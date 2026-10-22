@@ -854,7 +854,6 @@
   "summary": {
     "all_passed": true,
     "duplicate_leaves_total": 0,
-    "elapsed_s": 12.01,
     "failed_rounds": 0,
     "generated": "deterministic",
     "processes_per_round": 8,

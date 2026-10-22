@@ -91,12 +91,10 @@ def main() -> int:
     rng = random.Random(a.seed)
     root = Path(tempfile.mkdtemp(prefix="hbs_stress_"))
     rounds = []
-    t0 = time.time()
     for i in range(a.rounds):
         r = run_round(root / f"r{i}", a.processes, rng)
         r["round"] = i
         rounds.append(r)
-    elapsed = time.time() - t0
 
     n_ok = sum(1 for r in rounds if r["ok"])
     summary = {
@@ -108,7 +106,6 @@ def main() -> int:
         "duplicate_leaves_total": sum(r["duplicates"] for r in rounds),
         "reload_mismatches": sum(0 if r["reloaded_matches"] else 1 for r in rounds),
         "reuse_rejections_after_restart_total": sum(r["reuse_rejected_after_restart"] for r in rounds),
-        "elapsed_s": round(elapsed, 2),
         "all_passed": n_ok == a.rounds,
         "generated": "deterministic",
     }

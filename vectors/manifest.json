@@ -1,6 +1,6 @@
 {
-  "generated_utc": "2026-10-22T09:18:03.931333+00:00",
-  "source_revision": "69a47c235fbab81bce7776f81bc20fdab33d9d60",
+  "generated_utc": "2026-10-22T09:21:18.746761+00:00",
+  "source_revision": "f7e6a28fa1c47bc349f1fefc19f7107543912488",
   "interpreter": {
     "python": "3.14.7",
     "implementation": "cpython"
@@ -36,8 +36,8 @@
     "results/leaf_equivalence.json": "14cc6df906ca7dbde580787ebc0409fa54810bf1f8f03ef7068cefd8ee64e0fb",
     "experiments/mutation_test_checksum.py": "bb930dac87ed7132187dc18554b2790bf66f9f0e6f9c834000185fe21fb3bdca",
     "results/mutation_test_checksum.json": "0579f925e6dd13878e852bbc807a8004085e7e2f7142b76fe7a54f89a8882754",
-    "experiments/state_stress.py": "90f0c3c8fb00a3cbce82a006120bea030eb8f17259bb4ec2888c440a16f5f230",
-    "results/state_stress.json": "8b50c5906474e2e7a5bb959e2aed7985f50fcd72f616c59beb4fe26afff114d8",
+    "experiments/state_stress.py": "e823db6ca73e8c453e021c815cd3ecc9f593982b7aa2592da70d189d08279a48",
+    "results/state_stress.json": "f4140b17c636027ddcdc512a3db9956068897d540faeb2546e07afb5f2b04bea",
     "experiments/benchmark_state.py": "570193082215592c814421a4d0543d03ed46fb280d5ee146f9311cd79ecf4879",
     "results/state_overhead.json": "95af1fd0298b8d8ffa437ebe0cfab965ef8a4c8d6496667865dfdf427bae648c"
   },
