@@ -1,6 +1,6 @@
 {
-  "generated_utc": "2026-10-22T08:17:58.459011+00:00",
-  "source_revision": "a8d97759e889b227cbb9a42e6912e1c9d2f266bb",
+  "generated_utc": "2026-10-22T08:32:38.153974+00:00",
+  "source_revision": "25eaefa281e327a092f88f73383306cb4e3f7a05",
   "interpreter": {
     "python": "3.14.7",
     "implementation": "cpython"
@@ -26,7 +26,7 @@
     "hbs_signature.py": "c03c6c475ce71acaed376a4f8f3665e00a78da13d0af153848f14980c3641116",
     "experiment_v2.py": "ad306bee197cd02be8b8697fe78941caa5bf9f7601d24debfce88614feb55bd0",
     "ref_verify.py": "cef238d7bd6378283509e47635f108ddf7f0d840572103f84b87c10f73425075",
-    "paper.md": "057b8585222144d6a2585aa1e483658e56c53801c7006700cfeb6dd52cdc65f3",
+    "paper.md": "6080bbe197ea8328fdd8aedae022ca53de041748b33b9ece5f4e5fcbcff01e92",
     "kat_wots.json": "ee98e45bce997e5961e8eb59902a0fb18e9616ce6f30c60cb9e3d5f79afe9a07",
     "native_bench/bench_proto.c": "fa1a74db8ef59e63325cbcad5f00378c89069497857e5cffcae3415e57eff5eb",
     "native_bench/bench_std.c": "cac7873393bde50a8caf179cc1520f8233d1e528fbb51dea4819d5a42b32cb10",

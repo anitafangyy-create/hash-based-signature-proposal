@@ -458,7 +458,7 @@ Reproducibility artifacts: `wots.py` (self-test, incl. checksum boundary tests a
 | `artifact/experiments/summarize.py` | `2f9ba52653a8ed4d` |
 | `artifact/results/bench_summary.csv` | `97f85e2f4835324f` |
 | `vectors/kat.json` | `ee98e45bce997e59` |
-| `vectors/manifest.json` | `757299b26db031fc` |
+| `vectors/manifest.json` | `20a731a9b4797860` |
 | `experiments/reproduce_checksum_bug.py` | `a27c924caccc041f` |
 | `experiments/benchmark.py` | `43ccd2a2268e6e2c` |
 | `experiments/make_manifest.py` | `372ec339386addf1` |

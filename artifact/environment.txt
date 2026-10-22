@@ -5,8 +5,8 @@ Arch: arm64
 Python (actual): Python 3.14.7 (cpython; the interpreter used for experiment_v2.py, benchmark.py, run_sessions.py, make_manifest.py)
 Python (paper claims): CPython 3.14.7 (matches actual)
 C compiler: Apple clang version 17.0.0 (clang-1700.0.13.5)
-Git HEAD: c1e776886888da9396e56b2bf331dcb4e606c2af (rounds 5-6 external-review fixes; supersedes e896002)
-Git state: unified MSS-LEAF domain-separation label in experiment_v2.py + native_bench/bench_proto.c; uniform 3-iteration warm-up in experiments/benchmark.py; corrected fig6 XMSS/LMS sizes in make_charts_v2.py; §3.3.2 deployment-API scope disclosure; [17] Merkle CRYPTO'87 DOI. See before-fix.patch for the F1 crypto fixes, and pre_submission_review_2026-10-22.md for the full review record.
+Git HEAD: 25eaefa281e327a092f88f73383306cb4e3f7a05 (post-GitHub-tidying; supersedes earlier review commits)
+Git state: unified MSS-LEAF domain-separation label in experiment_v2.py + native_bench/bench_proto.c; uniform 3-iteration warm-up in experiments/benchmark.py; corrected fig6 XMSS/LMS sizes in make_charts_v2.py; §3.3.2 deployment-API scope disclosure; [17] Merkle CRYPTO'87 DOI. See before-fix.patch for the F1 crypto fixes, and docs/review/pre_submission_review_2026-10-22.md for the full review record.
 PQClean commit: 0586a824fc0d49df0b6b6e9179d8d15d06d0974f (short 0586a82), 2026-08-04
 PQClean resolved: yes, short hash parsed locally; native_bench/_build/PQClean HEAD matches
 Crypto deps: Python stdlib only (hashlib.sha256, os.urandom)
@@ -20,8 +20,16 @@ results/bench_stats.{csv,json}              # its output (63 rows)
 experiments/signature_size.py               # F2 size accounting cross-checked against code constants
 experiments/size_accounting.json            # its output
 
+--- Round-6 addition: external-review P0 response ---
+experiments/audit_checksum_rfc.py         # independent RFC 8391 reference encoder (Algorithm 1 + 5)
+results/checksum_rfc_audit.json           # exhaustive c in [0,960] per-value audit, 961/961 zero mismatches
+
+--- Round-7: GitHub release tidying ---
+README.md rewritten for the audited manuscript; superseded early-stage files moved to legacy/;
+review records moved to docs/review/; .workbuddy/ purged from history and ignored.
+
 --- Round-5/6 additions (external review fix pass) ---
-pre_submission_review_2026-10-22.md         # external-review report (7 P1 + 5 P2; fixes tracked)
+docs/review/pre_submission_review_2026-10-22.md         # external-review report (7 P1 + 5 P2; fixes tracked)
 tests/                                      # 118-test regression suite (7 files)
 state_demo/                                 # durable-state fault-injection demo (8/8 tests)
 native_results_sessions.json                # 3-session native benchmark (rotated order, 12s cooldown)

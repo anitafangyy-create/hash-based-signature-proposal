@@ -5,3 +5,6 @@ __pycache__/
 wots_bench
 
 native_bench/_build/
+
+# personal assistant session memory — never commit
+.workbuddy/
