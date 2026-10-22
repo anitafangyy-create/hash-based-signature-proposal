@@ -85,8 +85,10 @@ python make_native_chart.py    # -> fig8_native_benchmark.png (native figure)
 - `artifact/environment.txt` records the exact host (macOS 15.7.7, Apple M1),
   Python (3.14.3), compiler (Apple clang 17.0.0), and PQClean commit
   (`0586a82`).
-- `paper.md` Appendix C lists SHA-256 checksums (first 16 hex) of the primary
-  artifacts; regenerate with `shasum -a 256 <file>` on the tagged release.
+- The manuscript's Appendix C (in the sibling directory
+  `../hash-based-signature-paper/paper.md`) lists SHA-256 checksums (first 16
+  hex) of the primary artifacts, with paths relative to this repository;
+  regenerate with `shasum -a 256 <file>` on the tagged release.
 
 ## Note on the original vs. fixed code
 
