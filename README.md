@@ -68,10 +68,12 @@ python3 experiments/reproduce_checksum_bug.py  # F1 defect reproduction
 python3 experiments/audit_checksum_rfc.py      # exhaustive checksum audit vs. RFC 8391 -> results/checksum_rfc_audit.json
 python3 experiments/leaf_equivalence.py        # explicit/compact equivalence over all 128 leaves of h=7 -> results/leaf_equivalence.json
 python3 experiments/mutation_test_checksum.py  # 3 encoder mutants, differential + suite detection -> results/mutation_test_checksum.json
+python3 experiments/state_stress.py            # randomized scheduling stress (50x8, restart-verified) -> results/state_stress.json
+python3 experiments/benchmark_state.py         # allocator reserve+persist overhead (separate from §5 latencies) -> results/state_overhead.json
 python3 experiments/benchmark.py --reps 101     # standardized timing -> results/raw/
 python3 experiments/make_manifest.py            # regenerate vectors/manifest.json
 python -m pytest -q tests/                      # full correctness + property + negative suite (123 tests)
-python3 state_demo/test_state.py                # durable-state fault injection (8/8)
+python3 state_demo/test_state.py                # durable-state fault injection (10/10)
 ```
 
 Native C benchmark (Apple clang; builds PQClean *clean* implementations):
@@ -95,6 +97,18 @@ cd native_bench && ./build.sh   # clones PQClean @ 0586a82, builds, writes nativ
   single-point mutants (wrong base, reversed digits, zero-padded buffer); all
   are caught by both the exhaustive differential and the test suite
   (`results/mutation_test_checksum.json`).
+- **State reliability** — `state_demo/test_state.py` (10/10) covers every
+  point of the reserve-then-sign path: concurrency, crash-before-reserve,
+  crash-after-reserve, crash-after-signing, log tampering, truncation,
+  rollback detection, capacity enforcement, and cross-reopen persistence.
+  `experiments/state_stress.py` adds randomized scheduling stress: 50 rounds
+  × 8 concurrent child processes with random delays, restart-verified after
+  each round — **400 reservations, 0 duplicate indices, 0 reload mismatches**
+  (`results/state_stress.json`).
+- **State overhead** — `experiments/benchmark_state.py` measures the
+  allocator's reserve-and-persist path separately (~0.68 ms median, incl.
+  3× fsync); this cost is deliberately **not** folded into the §5 signature
+  latencies (`results/state_overhead.json`).
 - **Forgery experiment** — `experiments/forgery_results.json`: buggy signatures
   accepted 20/20 by the buggy verifier, rejected 20/20 by the independent
   verifier; raw `sk[64..66]` leaked 10/10 (buggy) vs 0/10 (fixed); Monte-Carlo

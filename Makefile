@@ -20,7 +20,11 @@ reproduce: ## full correctness gate (no timing benchmarks)
 	$(PY) experiments/reproduce_checksum_bug.py
 	$(PY) -m pytest -q tests/
 	$(PY) state_demo/test_state.py
+	$(PY) experiments/state_stress.py --rounds 50 --processes 8
 	$(PY) experiments/make_manifest.py
+
+stress: ## randomized scheduling stress (default 50x8; use ROUNDS=/PROCS= to scale)
+	$(PY) experiments/state_stress.py --rounds $(ROUNDS) --processes $(PROCS)
 
 verify: ## fast gate for CI / day-to-day changes
 	$(PY) -m pytest -q tests/

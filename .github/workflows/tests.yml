@@ -30,6 +30,8 @@ jobs:
         run: python -m pytest -q tests/
       - name: State-management fault injection demo
         run: python state_demo/test_state.py
+      - name: Randomized scheduling stress (small round count for CI)
+        run: python experiments/state_stress.py --rounds 10 --processes 4
       - name: Exhaustive RFC 8391 checksum differential audit (961 values)
         run: python experiments/audit_checksum_rfc.py
       - name: Exhaustive leaf equivalence, h=7 (128 leaves x 12 checks)

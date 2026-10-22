@@ -61,6 +61,8 @@ def main():
         "experiments/audit_checksum_rfc.py", "results/checksum_rfc_audit.json",
         "experiments/leaf_equivalence.py", "results/leaf_equivalence.json",
         "experiments/mutation_test_checksum.py", "results/mutation_test_checksum.json",
+        "experiments/state_stress.py", "results/state_stress.json",
+        "experiments/benchmark_state.py", "results/state_overhead.json",
     ]
     inputs = {f: _sha256(ROOT / f) for f in files}
 
