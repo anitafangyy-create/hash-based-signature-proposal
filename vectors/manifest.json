@@ -1,6 +1,6 @@
 {
-  "generated_utc": "2026-10-22T08:39:28.846321+00:00",
-  "source_revision": "08afec9b15cad56884b6234f2e29978be8690ea4",
+  "generated_utc": "2026-10-22T08:53:57.627625+00:00",
+  "source_revision": "08b15c0d87c5ae607c9c37fa7884c54e5c5c3d7c",
   "interpreter": {
     "python": "3.14.7",
     "implementation": "cpython"
@@ -31,7 +31,7 @@
     "native_bench/bench_std.c": "cac7873393bde50a8caf179cc1520f8233d1e528fbb51dea4819d5a42b32cb10",
     "native_bench/build.sh": "f93ac32283a1888f5c233e82bfa00a7b0152ed91d50316fc7cef57869caf7b80",
     "experiments/audit_checksum_rfc.py": "9c4ebb7d4712eadce00ee960f18d777572218f379ceb19f55be291ba152d728b",
-    "results/checksum_rfc_audit.json": "5e5c8775f6f6fb64c7f655980804381402937f53a620fa291de2164db5a4dd34"
+    "results/checksum_rfc_audit.json": "bd2b7b96d452b624a2cd2b7dab173dda56cb69e0848bb7eeeb429f9e113cc330"
   },
   "result_artifacts": {
     "python_benchmark": "results_v2.json",

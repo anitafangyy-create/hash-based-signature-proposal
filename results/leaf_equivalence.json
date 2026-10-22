@@ -1,0 +1,785 @@
+{
+  "summary": {
+    "height": 7,
+    "leaves": 128,
+    "checks_per_leaf": 12,
+    "total_checks": 1536,
+    "failures": [],
+    "passed": true,
+    "explicit_core_bytes": 4512,
+    "compact_core_bytes": 2368,
+    "reduction_bytes": 2144,
+    "reduction_pct": 47.5,
+    "generated_utc": "2026-10-22T08:53:54Z"
+  },
+  "per_leaf": [
+    {
+      "leaf": 0,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 1,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 2,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 3,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 4,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 5,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 6,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 7,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 8,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 9,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 10,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 11,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 12,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 13,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 14,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 15,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 16,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 17,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 18,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 19,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 20,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 21,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 22,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 23,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 24,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 25,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 26,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 27,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 28,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 29,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 30,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 31,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 32,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 33,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 34,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 35,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 36,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 37,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 38,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 39,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 40,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 41,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 42,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 43,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 44,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 45,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 46,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 47,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 48,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 49,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 50,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 51,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 52,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 53,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 54,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 55,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 56,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 57,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 58,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 59,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 60,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 61,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 62,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 63,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 64,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 65,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 66,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 67,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 68,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 69,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 70,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 71,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 72,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 73,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 74,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 75,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 76,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 77,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 78,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 79,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 80,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 81,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 82,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 83,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 84,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 85,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 86,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 87,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 88,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 89,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 90,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 91,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 92,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 93,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 94,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 95,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 96,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 97,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 98,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 99,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 100,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 101,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 102,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 103,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 104,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 105,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 106,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 107,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 108,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 109,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 110,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 111,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 112,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 113,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 114,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 115,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 116,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 117,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 118,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 119,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 120,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 121,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 122,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 123,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 124,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 125,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 126,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    },
+    {
+      "leaf": 127,
+      "explicit_bytes": 4512,
+      "compact_bytes": 2368,
+      "pkfromsig_matches": true
+    }
+  ]
+}

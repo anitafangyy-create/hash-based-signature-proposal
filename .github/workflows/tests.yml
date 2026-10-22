@@ -1,0 +1,40 @@
+name: tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+# Correctness and evidence gates. Deliberately NO timing benchmarks here:
+# CI hosts are virtualized/shared and their timings are not usable as paper
+# performance data. Run `make benchmark` / `make benchmark-native` manually
+# on the reference host for measurements (see README).
+jobs:
+  correctness:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: Install test dependency
+        run: python -m pip install --quiet pytest
+      - name: Unit, negative, encoding-equivalence, property and state tests
+        run: python -m pytest -q tests/
+      - name: State-management fault injection demo
+        run: python state_demo/test_state.py
+      - name: Exhaustive RFC 8391 checksum differential audit (961 values)
+        run: python experiments/audit_checksum_rfc.py
+      - name: Exhaustive leaf equivalence, h=7 (128 leaves x 12 checks)
+        run: python experiments/leaf_equivalence.py
+      - name: Checksum mutation testing (3 mutants)
+        run: python experiments/mutation_test_checksum.py
+      - name: Provenance manifest refresh check
+        run: python experiments/make_manifest.py

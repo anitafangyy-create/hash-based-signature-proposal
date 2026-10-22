@@ -1,0 +1,26 @@
+{
+  "summary": {
+    "mutants": 3,
+    "legal_checksums": 961,
+    "real_impl_differential_mismatches": 0,
+    "real_impl_suite_fails": false
+  },
+  "per_mutant": {
+    "M1_wrong_base": {
+      "differential_mismatches_961": 946,
+      "detected_by_differential": true,
+      "detected_by_test_suite": true
+    },
+    "M2_reversed_digits": {
+      "differential_mismatches_961": 901,
+      "detected_by_differential": true,
+      "detected_by_test_suite": true
+    },
+    "M3_zeropadded_buffer": {
+      "differential_mismatches_961": 960,
+      "detected_by_differential": true,
+      "detected_by_test_suite": true
+    }
+  },
+  "generated_utc": "2026-10-22T08:53:55Z"
+}
