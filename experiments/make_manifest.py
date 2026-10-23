@@ -63,6 +63,7 @@ def main():
         "experiments/mutation_test_checksum.py", "results/mutation_test_checksum.json",
         "experiments/state_stress.py", "results/state_stress.json",
         "experiments/benchmark_state.py", "results/state_overhead.json",
+        "experiments/prefix_separation.py", "results/prefix_separation.json",
     ]
     inputs = {f: _sha256(ROOT / f) for f in files}
 

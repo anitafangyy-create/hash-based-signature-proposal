@@ -1,6 +1,6 @@
 {
-  "generated_utc": "2026-10-22T09:30:02.425881+00:00",
-  "source_revision": "e1e6233b58de455964b321cc45e4511001d5282d",
+  "generated_utc": "2026-10-23T04:57:26.364958+00:00",
+  "source_revision": "cdb523c59748f2480c152ac9cf89dcb3065253ee",
   "interpreter": {
     "python": "3.14.7",
     "implementation": "cpython"
@@ -39,7 +39,9 @@
     "experiments/state_stress.py": "e823db6ca73e8c453e021c815cd3ecc9f593982b7aa2592da70d189d08279a48",
     "results/state_stress.json": "9ce422e7b14f05b800f407ee2ff53bd95c5f47270d2b0da980bf28bf995f1bca",
     "experiments/benchmark_state.py": "570193082215592c814421a4d0543d03ed46fb280d5ee146f9311cd79ecf4879",
-    "results/state_overhead.json": "95af1fd0298b8d8ffa437ebe0cfab965ef8a4c8d6496667865dfdf427bae648c"
+    "results/state_overhead.json": "95af1fd0298b8d8ffa437ebe0cfab965ef8a4c8d6496667865dfdf427bae648c",
+    "experiments/prefix_separation.py": "78490b3489c51f50acc68380056156a4ea3dd94c5a27edcdd87198c603ac29a8",
+    "results/prefix_separation.json": "65d21c3c100c9d8b3e3e12480739a693931d42eeebadbce93a4adf3f6014ec69"
   },
   "result_artifacts": {
     "python_benchmark": "results_v2.json",

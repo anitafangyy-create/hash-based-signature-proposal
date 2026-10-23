@@ -106,6 +106,11 @@ cd native_bench && ./build.sh   # clones PQClean @ 0586a82, builds, writes nativ
   each round — **8,000 reservations, 0 duplicate indices, 0 reload
   mismatches, 1,000/1,000 restart rounds reject reuse**
   (`results/state_stress.json`).
+
+`experiments/prefix_separation.py` verifies that the four domain-separation
+prefixes (`WOTS-CHAIN`, `MSS-LEAF`, `MSS-NODE`, `HBS-PQ-MSG-v1`) are pairwise
+non-prefixes and collide nowhere over 65,793 exhaustive + 100,000 random
+role/data pairs — zero cross-role collisions (`results/prefix_separation.json`).
 - **State overhead** — `experiments/benchmark_state.py` measures the
   allocator's reserve-and-persist path separately (~0.68 ms median, incl.
   3× fsync); this cost is deliberately **not** folded into the §5 signature

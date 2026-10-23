@@ -1,0 +1,22 @@
+{
+  "all_checks_passed": true,
+  "exhaustive_small_domain_collisions": [],
+  "exhaustive_small_domain_pairs": 65793,
+  "generated": "deterministic",
+  "pairwise_no_prefix_is_prefix_of_another": true,
+  "prefix_bytes": {
+    "HBS-PQ-MSG-v1": "4842532d50512d4d53472d7631",
+    "MSS-LEAF": "4d53532d4c454146",
+    "MSS-NODE": "4d53532d4e4f4445",
+    "WOTS-CHAIN": "574f54532d434841494e"
+  },
+  "random_large_domain_collisions": [],
+  "random_trials": 100000,
+  "roles": [
+    "WOTS-CHAIN",
+    "MSS-LEAF",
+    "MSS-NODE",
+    "HBS-PQ-MSG-v1"
+  ],
+  "seed": 20261023
+}

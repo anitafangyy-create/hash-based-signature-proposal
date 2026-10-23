@@ -23,6 +23,7 @@ reproduce: ## full correctness gate (no timing benchmarks)
 	$(PY) experiments/leaf_equivalence.py
 	$(PY) experiments/mutation_test_checksum.py
 	$(PY) experiments/reproduce_checksum_bug.py
+	$(PY) experiments/prefix_separation.py
 	$(PY) -m pytest -q tests/
 	$(PY) state_demo/test_state.py
 	$(PY) experiments/state_stress.py --rounds $(STRESS_ROUNDS) --processes $(STRESS_PROCS)

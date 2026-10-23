@@ -38,6 +38,7 @@ $ echo $?  -> 0
 | 5 | `python3 -m pytest -q tests/` | 0 | 123 passed | — |
 | 6 | `python3 state_demo/test_state.py` | 0 | 10/10 passed | see Appendix C |
 | 7 | `python3 experiments/state_stress.py --rounds 1000 --processes 8` | 0 | `results/state_stress.json` (8,000 reservations, 0 duplicates, restart-verified) | see Appendix C |
+| 8 | `python3 experiments/prefix_separation.py` | 0 | `results/prefix_separation.json` (4 roles pairwise non-prefix; 65,793 + 100,000 checks, 0 collisions) | Appendix C |
 | 8 | `python3 experiments/benchmark_state.py --reps 1000` | 0 | `results/state_overhead.json` | see Appendix C |
 | 9 | `python3 experiments/make_manifest.py` | 0 | `vectors/manifest.json` | see Appendix C |
 
